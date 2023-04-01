@@ -3,16 +3,15 @@ package tests;
 import org.junit.jupiter.api.Test;
 import src.SameKeyException;
 import src.Tree;
-import src.Tree;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
     @Test
     void inserirTesteErroSameKey() {
-        Tree arvoreUwU = new Tree(1);
+        Tree arvore = new Tree(1);
         try{
-           arvoreUwU.inserir(1);
+           arvore.inserir(1);
        }catch (SameKeyException e){
            assertTrue(e.getMessage().contentEquals("Já existe uma chave com esse número."));
        }

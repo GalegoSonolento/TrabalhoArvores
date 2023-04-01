@@ -4,21 +4,6 @@ public class Tree {
     private Node root;
     private int height;
 
-    private class Node {
-        private Node daddy, rightSon, leftsSon;
-        private int cb;
-        private int key;
-
-        public Node(Node daddy, Node rightSon, Node leftsSon, int cb, int key) {
-            this.daddy = daddy;
-            this.rightSon = rightSon;
-            this.leftsSon = leftsSon;
-            this.cb = cb;
-            this.key = key;
-
-        }
-    }
-
     public Node getRoot() {
         return root;
     }
@@ -38,57 +23,54 @@ public class Tree {
         height = 1;
     }
 
-    public void preOrdem(){
+    public void preOrdem() {
 
     }
 
-    public void posOrdem(){
+    public void posOrdem() {
 
     }
 
-    public void emOrdem(){
+    public void emOrdem() {
 
     }
 
     // TODO: identificar onde colocar o height
     public void inserir(int key) throws SameKeyException {
         Node node = root;
-        if(node == null) {
+        if (node == null) {
             root = new Node(null, null, null, 0, key);
             return;
         }
-        while(true){
-            if (node.key == key) throw new SameKeyException("Já existe uma chave com esse número.");
-            else if (node.key > key) {
-                if (node.leftsSon == null) {
-                    node.leftsSon = new Node(node, null, null, 0, key);
+        while (true) {
+            if (node.getKey() == key) throw new SameKeyException("Já existe uma chave com esse número.");
+            else if (node.getKey() > key) {
+                if (node.getLeftSon() == null) {
+                    node.setLeftSon(new Node(node, null, null, 0, key));
                     break;
+                } else {
+                    node = node.getLeftSon();
                 }
-                else {
-                    node = node.leftsSon;
-                }
-            }
-            else {
-                if (node.rightSon == null) {
-                    node.rightSon = new Node(node, null, null, 0, key);
+            } else {
+                if (node.getRightSon() == null) {
+                    node.setRightSon(new Node(node, null, null, 0, key));
                     break;
-                }
-                else {
-                    node = node.rightSon;
+                } else {
+                    node = node.getRightSon();
                 }
             }
         }
 
         // TODO: Incrementar a altura height ++;
-        // TODO: Usar uma variavel para controlar a profundidade do while e comparar a altura.
-        // TODO: inserir um rebalancIMENTO
+        // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
+        // TODO: inserir um rebalanceamento
     }
 
-    public void rebalancear(){
+    public void rebalancear() {
 
     }
 
-    public void pesquisar(){
+    public void pesquisar() {
 
     }
 
