@@ -27,4 +27,21 @@ public class TreeTest {
         Tree tree = new Tree(1);
         assertEquals(1, tree.getHeight());
     }
+    @Test
+    void testeLocalCerto() {
+        // teste simples de uma árvore binária de 3 níveis para ver se todos os int são colocados nos lugares certos,
+        // nessa primeira versão o desenvolvedor precisa ver o resultado do teste e a árvore necessariamente precisa ser
+        // cheia e com a ordem correta de inserção.
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(10);
+        tree.inserir(20);
+        tree.inserir(8);
+        tree.inserir(16);
+        tree.inserir(12);
+        tree.inserir(25);
+        System.out.println("       " + tree.getRoot().getKey() + "\n" +
+                "  " + tree.getRoot().getLeftSon().getKey() + "-------" + tree.getRoot().getRightSon().getKey() + "\n" +
+                tree.getRoot().getLeftSon().getLeftSon().getKey() + "---" + tree.getRoot().getLeftSon().getRightSon().getKey() + "   " + tree.getRoot().getRightSon().getLeftSon().getKey() + "---" + tree.getRoot().getRightSon().getRightSon().getKey());
+    }
 }
