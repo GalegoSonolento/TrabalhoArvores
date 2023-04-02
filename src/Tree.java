@@ -40,13 +40,17 @@ public class Tree {
         Node node = root;
         if (node == null) {
             root = new Node(null, null, null, 0, key);
+            height = 1;
             return;
         }
+        int heightControl = 1;
         while (true) {
+            heightControl ++;
             if (node.getKey() == key) throw new SameKeyException("Já existe uma chave com esse número.");
             else if (node.getKey() > key) {
                 if (node.getLeftSon() == null) {
                     node.setLeftSon(new Node(node, null, null, 0, key));
+                    if (heightControl > height) height = heightControl;
                     break;
                 } else {
                     node = node.getLeftSon();
@@ -54,6 +58,7 @@ public class Tree {
             } else {
                 if (node.getRightSon() == null) {
                     node.setRightSon(new Node(node, null, null, 0, key));
+                    if (heightControl > height) height = heightControl;
                     break;
                 } else {
                     node = node.getRightSon();

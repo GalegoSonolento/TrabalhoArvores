@@ -44,4 +44,17 @@ public class TreeTest {
                 "  " + tree.getRoot().getLeftSon().getKey() + "-------" + tree.getRoot().getRightSon().getKey() + "\n" +
                 tree.getRoot().getLeftSon().getLeftSon().getKey() + "---" + tree.getRoot().getLeftSon().getRightSon().getKey() + "   " + tree.getRoot().getRightSon().getLeftSon().getKey() + "---" + tree.getRoot().getRightSon().getRightSon().getKey());
     }
+
+    @Test
+    void testeHeightComHeightControl() {
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(10);
+        tree.inserir(20);
+        tree.inserir(8);
+        tree.inserir(16);
+        tree.inserir(12);
+        tree.inserir(25);
+        assertEquals(3, tree.getHeight());
+    }
 }
