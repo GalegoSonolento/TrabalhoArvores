@@ -19,7 +19,7 @@ public class TreeTest {
     @Test
     void inserirCorreto() {
         Tree tree = new Tree();
-        System.out.println(tree.getRoot());
+        assertNull(tree.getRoot());
     }
 
     @Test
@@ -40,6 +40,13 @@ public class TreeTest {
         tree.inserir(16);
         tree.inserir(12);
         tree.inserir(25);
+        assertEquals(15, tree.getRoot().getKey());
+        assertEquals(10, tree.getRoot().getLeftSon().getKey());
+        assertEquals(20, tree.getRoot().getRightSon().getKey());
+        assertEquals(8, tree.getRoot().getLeftSon().getLeftSon().getKey());
+        assertEquals(12, tree.getRoot().getLeftSon().getRightSon().getKey());
+        assertEquals(16, tree.getRoot().getRightSon().getLeftSon().getKey());
+        assertEquals(25, tree.getRoot().getRightSon().getRightSon().getKey());
         System.out.println("       " + tree.getRoot().getKey() + "\n" +
                 "  " + tree.getRoot().getLeftSon().getKey() + "-------" + tree.getRoot().getRightSon().getKey() + "\n" +
                 tree.getRoot().getLeftSon().getLeftSon().getKey() + "---" + tree.getRoot().getLeftSon().getRightSon().getKey() + "   " + tree.getRoot().getRightSon().getLeftSon().getKey() + "---" + tree.getRoot().getRightSon().getRightSon().getKey());
