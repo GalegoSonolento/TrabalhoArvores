@@ -2,25 +2,22 @@ package src;
 
 public class Tree {
     private Node root;
-    private int height;
 
     public Node getRoot() {
         return root;
     }
 
     public int getHeight() {
-        return height;
+        return root != null ? root.getHeight() : 0;
     }
 
     // TODO: Sobrecarregar o construtor com mais argumentos
     public Tree() {
         Node root = null;
-        height = 0;
     }
 
     public Tree(int key) {
-        root = new Node(null, null, null, 0, key);
-        height = 1;
+        root = new Node(null, key);
     }
 
     public void preOrdem() {
@@ -39,8 +36,7 @@ public class Tree {
     public void inserir(int key) throws SameKeyException {
         Node node = root;
         if (node == null) {
-            root = new Node(null, null, null, 0, key);
-            height = 1;
+            root = new Node(null, key);
             return;
         }
         int heightControl = 1;
@@ -63,7 +59,7 @@ public class Tree {
         }
         // TODO: Incrementar a altura height ++;
         // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
-        if (heightControl > height) height = heightControl;
+        if (heightControl > root.getHeight()) root.setHeight(heightControl);
         // TODO: inserir um rebalanceamento
     }
 
