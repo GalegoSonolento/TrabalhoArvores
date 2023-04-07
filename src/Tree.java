@@ -39,28 +39,33 @@ public class Tree {
             root = new Node(null, key);
             return;
         }
-        int heightControl = 1;
         while (true) {
-            heightControl ++;
             if (node.getKey() == key) throw new SameKeyException("Já existe uma chave com esse número.");
             if (node.getKey() > key) {
                 if (node.getLeftSon() == null) {
-                    node.setLeftSon(new Node(node, null, null, 0, key));
+                    node.setLeftSon(new Node(node, key));
                     break;
                 }
                 node = node.getLeftSon();
             } else {
                 if (node.getRightSon() == null) {
-                    node.setRightSon(new Node(node, null, null, 0, key));
+                    node.setRightSon(new Node(node, key));
                     break;
                 }
                 node = node.getRightSon();
             }
         }
+        // TODO: inserir um rebalanceamento
+
+        int heightControl = 1;
+        while (node != null) {
+            heightControl++;
+            if (heightControl > node.getHeight()) node.setHeight(heightControl);
+            node = node.getDaddy();
+        }
         // TODO: Incrementar a altura height ++;
         // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
-        if (heightControl > root.getHeight()) root.setHeight(heightControl);
-        // TODO: inserir um rebalanceamento
+
     }
 
     public void rebalancear() {
