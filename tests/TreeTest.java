@@ -63,5 +63,11 @@ public class TreeTest {
         tree.inserir(12);
         tree.inserir(25);
         assertEquals(3, tree.getHeight());
+        assertEquals(2, tree.getRoot().getLeftSon().getHeight());
+        assertEquals(2, tree.getRoot().getRightSon().getHeight());
+        assertEquals(1, tree.getRoot().getLeftSon().getLeftSon().getHeight());
+        assertEquals(1, tree.getRoot().getLeftSon().getRightSon().getHeight());
+        assertEquals(1, tree.getRoot().getRightSon().getLeftSon().getHeight());
+        assertEquals(1, tree.getRoot().getRightSon().getRightSon().getHeight());
     }
 }
