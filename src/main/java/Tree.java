@@ -12,9 +12,7 @@ public class Tree {
     }
 
     // TODO: Sobrecarregar o construtor com mais argumentos
-    public Tree() {
-        Node root = null;
-    }
+    public Tree() {}
 
     public Tree(int key) {
         root = new Node(null, key);
