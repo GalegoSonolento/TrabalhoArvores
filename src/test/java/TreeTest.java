@@ -70,4 +70,30 @@ public class TreeTest {
         assertEquals(1, tree.getRoot().getRightSon().getLeftSon().getHeight());
         assertEquals(1, tree.getRoot().getRightSon().getRightSon().getHeight());
     }
+
+    @Test
+    void testeEmLargura() {
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(10);
+        tree.inserir(20);
+        tree.inserir(8);
+        tree.inserir(16);
+        tree.inserir(12);
+        tree.inserir(25);
+        assertArrayEquals(new Integer[]{15,10,20,8,12,16,25}, tree.emLargura());
+    }
+
+    @Test
+    void testeEmLarguraBanguela() {
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(10);
+        tree.inserir(20);
+        tree.inserir(8);
+        // tree.inserir(16); arvore fica com um null no meio
+        tree.inserir(12);
+        tree.inserir(25);
+        assertArrayEquals(new Integer[]{15,10,20,8,12,null,25}, tree.emLargura());
+    }
 }

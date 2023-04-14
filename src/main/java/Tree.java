@@ -1,5 +1,7 @@
 package src;
 
+import java.util.*;
+
 public class Tree {
     private Node root;
 
@@ -32,6 +34,28 @@ public class Tree {
 
     }
 
+    public Integer[] emLargura() {
+        if (this.root == null)
+            return null;
+        int size = (1 << this.getHeight()) - 1;
+        Integer[] result = new Integer[size];
+        Node node;
+        int level = 0;
+        Queue<Node> next = new LinkedList<>();
+        next.add(this.root);
+        for (int i = 0; i < result.length; i++) {
+            node = next.poll();
+            if (node == null) {
+                result[i] = null;
+                continue;
+            }
+            result[i] = node.getKey();
+            next.add(node.getLeftSon());
+            next.add(node.getRightSon());
+        }
+        return result;
+    }
+
     // TODO: identificar onde colocar o height
     public void inserir(int key) throws SameKeyException {
         Node node = root;
@@ -40,7 +64,7 @@ public class Tree {
             return;
         }
         while (true) {
-            if (node.getKey() == key) throw new SameKeyException("Já existe uma chave com esse número.");
+            if (node.getKey() == key) throw new SameKeyException(String.format("Já existe uma chave com o número %d %s.", key, Arrays.toString(this.emLargura())));
             if (node.getKey() > key) {
                 if (node.getLeftSon() == null) {
                     node.setLeftSon(new Node(node, key));
