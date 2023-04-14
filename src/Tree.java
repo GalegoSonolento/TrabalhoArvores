@@ -70,8 +70,22 @@ public class Tree {
 
     }
 
-    public void pesquisar() {
-
+    public Node pesquisar(int keySearch) {
+        Node nodeControl = root;
+        // esse for evita elses desnecessários e mantém o código mais limpo (até porque o número de
+        // pesquisas não vai passar do valor da altura da árvore)
+        for (int i=0; i <= getHeight(); i++) {
+            int nodeControlKey = nodeControl.getKey();
+            if (keySearch == nodeControlKey)
+                return nodeControl;
+            if (keySearch > nodeControlKey)
+                if (nodeControl.getRightSon() != null)
+                    nodeControl = nodeControl.getRightSon();
+            else
+                if (nodeControl.getLeftSon() != null)
+                    nodeControl = nodeControl.getLeftSon();
+        }
+        return null;
     }
 
     // TODO: String grande com a árvore em tabs
