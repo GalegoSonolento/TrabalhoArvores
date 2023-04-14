@@ -1,5 +1,3 @@
-package src;
-
 import java.util.*;
 
 public class Tree {
@@ -64,7 +62,7 @@ public class Tree {
             return;
         }
         while (true) {
-            if (node.getKey() == key) throw new SameKeyException(String.format("Já existe uma chave com o número %d %s.", key, Arrays.toString(this.emLargura())));
+            if (node.getKey() == key) throw new SameKeyException(String.format("Já existe uma chave com o número %d.", key));
             if (node.getKey() > key) {
                 if (node.getLeftSon() == null) {
                     node.setLeftSon(new Node(node, key));
@@ -103,7 +101,7 @@ public class Tree {
     // TODO: String grande com a árvore em tabs
     @Override
     public String toString() {
-        return "src.Tree{}";
+        return "Tree{}";
     }
 }
 

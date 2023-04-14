@@ -1,5 +1,3 @@
-package src;
-
 public class Node {
     private Node daddy, rightSon, leftSon;
     private int cb;

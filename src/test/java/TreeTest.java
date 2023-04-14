@@ -1,8 +1,4 @@
-package tests;
-
 import org.junit.jupiter.api.Test;
-import src.SameKeyException;
-import src.Tree;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +9,7 @@ public class TreeTest {
         try{
            arvore.inserir(1);
        }catch (SameKeyException e){
-           assertTrue(e.getMessage().contentEquals("Já existe uma chave com esse número."));
+           assertEquals("Já existe uma chave com o número 1.", e.getMessage());
        }
     }
     @Test
