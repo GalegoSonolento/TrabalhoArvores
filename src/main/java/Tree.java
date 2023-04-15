@@ -76,24 +76,79 @@ public class Tree {
             }
         }
         // TODO: inserir um rebalanceamento
-
+        Node problem = null;
         int heightControl = 1;
         while (node != null) {
             heightControl++;
             if (heightControl > node.getHeight()) node.setHeight(heightControl);
+            int left = node.getLeftSon() == null ? 0 : node.getLeftSon().getHeight();
+            int right = node.getRightSon() == null ? 0 : node.getRightSon().getHeight();
+            node.setCb(left-right);
+            if (node.getCb() > 1 || node.getCb() < -1)
+                problem = node;
             node = node.getDaddy();
         }
         // TODO: Incrementar a altura height ++;
         // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
-
+        if (problem != null)
+            this.rebalancear(problem);
     }
 
-    public void rebalancear() {
-
+    public void rebalancear(Node node) {
+        if (node.getCb() > 1) {
+            if (node.getLeftSon().getCb() < 0)
+                rebalancearEsquerda(node);
+            rebalancearDireita(node);
+        }
+        if (node.getCb() < -1) {
+            if (node.getRightSon().getCb() > 0)
+                rebalancearDireita(node);
+            rebalancearEsquerda(node);
+        }
     }
 
-    public void pesquisar() {
+    public void rebalancearDireita(Node node) {
+        Node left = node.getLeftSon();
+        Node outro = left.getRightSon();
+        left.setRightSon(node);
+        left.setDaddy(node.getDaddy());
+        if (node.getDaddy() != null)
+            node.getDaddy().setLeftSon(left);
+        else
+            this.root = left;
+        node.setDaddy(left);
+        node.setLeftSon(outro);
+    }
 
+    public void rebalancearEsquerda(Node node) {
+        Node right = node.getRightSon();
+        Node outro = right.getLeftSon();
+        right.setLeftSon(node);
+        right.setDaddy(node.getDaddy());
+        if (node.getDaddy() != null)
+            node.getDaddy().setRightSon(right);
+        else
+            this.root = right;
+        node.setDaddy(right);
+        node.setRightSon(outro);
+    }
+
+    public Node pesquisar(int keySearch) {
+        Node nodeControl = root;
+        // esse for evita elses desnecessários e mantém o código mais limpo (até porque o número de
+        // pesquisas não vai passar do valor da altura da árvore)
+        for (int i=0; i <= getHeight(); i++) {
+            int nodeControlKey = nodeControl.getKey();
+            if (keySearch == nodeControlKey)
+                return nodeControl;
+            if (keySearch > nodeControlKey) {
+                if (nodeControl.getRightSon() != null)
+                    nodeControl = nodeControl.getRightSon();
+            } else
+                if (nodeControl.getLeftSon() != null)
+                    nodeControl = nodeControl.getLeftSon();
+        }
+        return null;
     }
 
     // TODO: String grande com a árvore em tabs
