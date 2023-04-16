@@ -130,4 +130,13 @@ public class TreeTest {
         tree.inserir(16);
         System.out.println(Arrays.toString(tree.emLargura()));
     }
+
+    @Test
+    void testeRebalanceamentoDireitaDuploSemFilho() {
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(10);
+        tree.inserir(8);
+        System.out.println(Arrays.toString(tree.emLargura()));
+    }
 }
