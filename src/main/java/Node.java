@@ -69,4 +69,30 @@ public class Node {
         this.height = height;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append("Node { this=");
+        out.append(this.hashCode());
+        out.append(", daddy=");
+        if (daddy != null) {
+            out.append(daddy.hashCode());
+        }
+        out.append(", leftSon=");
+        if (leftSon != null) {
+            out.append(leftSon.hashCode());
+        }
+        out.append(", rightSon=");
+        if (rightSon != null) {
+            out.append(rightSon.hashCode());
+        }
+        out.append(", cb=");
+        out.append(cb);
+        out.append(", key=");
+        out.append(key);
+        out.append(", height=");
+        out.append(height);
+        out.append(" }");
+        return out.toString();
+    }
 }
