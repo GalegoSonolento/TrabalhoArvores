@@ -96,8 +96,9 @@ public class Tree {
 
     public void rebalancear(Node node) {
         if (node.getCb() > 1) {
-            if (node.getLeftSon().getCb() < 0)
-                rebalancearEsquerda(node);
+            if (node.getLeftSon().getCb() < 0) {
+                rebalancearEsquerda(node.getLeftSon());
+            }
             rebalancearDireita(node);
         }
         if (node.getCb() < -1) {
@@ -113,11 +114,14 @@ public class Tree {
         left.setRightSon(node);
         left.setDaddy(node.getDaddy());
         if (node.getDaddy() != null)
-            node.getDaddy().setLeftSon(left);
+            node.getDaddy().setRightSon(left);
         else
             this.root = left;
         node.setDaddy(left);
         node.setLeftSon(outro);
+        if (outro != null) {
+            outro.setDaddy(node);
+        }
     }
 
     public void rebalancearEsquerda(Node node) {
@@ -126,11 +130,14 @@ public class Tree {
         right.setLeftSon(node);
         right.setDaddy(node.getDaddy());
         if (node.getDaddy() != null)
-            node.getDaddy().setRightSon(right);
+            node.getDaddy().setLeftSon(right);
         else
             this.root = right;
         node.setDaddy(right);
         node.setRightSon(outro);
+        if (outro != null) {
+            outro.setDaddy(node);
+        }
     }
 
     public Node pesquisar(int keySearch) {

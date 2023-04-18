@@ -49,9 +49,11 @@ public class TreeTest {
         assertEquals(12, tree.getRoot().getLeftSon().getRightSon().getKey());
         assertEquals(16, tree.getRoot().getRightSon().getLeftSon().getKey());
         assertEquals(25, tree.getRoot().getRightSon().getRightSon().getKey());
+        /*
         System.out.println("       " + tree.getRoot().getKey() + "\n" +
                 "  " + tree.getRoot().getLeftSon().getKey() + "-------" + tree.getRoot().getRightSon().getKey() + "\n" +
                 tree.getRoot().getLeftSon().getLeftSon().getKey() + "---" + tree.getRoot().getLeftSon().getRightSon().getKey() + "   " + tree.getRoot().getRightSon().getLeftSon().getKey() + "---" + tree.getRoot().getRightSon().getRightSon().getKey());
+        */
     }
 
     @Test
@@ -96,7 +98,19 @@ public class TreeTest {
         tree.inserir(15);
         tree.inserir(10);
         tree.inserir(8);
-        System.out.println(Arrays.toString(tree.emLargura()));
+        // System.out.println(Arrays.toString(tree.emLargura()));
+        // root check
+        assertNotNull(tree.getRoot());
+        assertEquals(10, tree.getRoot().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertNotNull(tree.getRoot().getRightSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(15, tree.getRoot().getRightSon().getKey());
     }
 
     @Test
@@ -108,7 +122,32 @@ public class TreeTest {
         tree.inserir(12);
         tree.inserir(8);
         tree.inserir(1);
-        System.out.println(Arrays.toString(tree.emLargura()));
+        // System.out.println(Arrays.toString(tree.emLargura()));
+        // root check
+        assertNotNull(tree.getRoot());
+        assertEquals(10, tree.getRoot().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertNotNull(tree.getRoot().getRightSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(15, tree.getRoot().getRightSon().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon().getLeftSon());
+        assertNull(tree.getRoot().getLeftSon().getRightSon());
+        assertNotNull(tree.getRoot().getRightSon().getRightSon());
+        assertNotNull(tree.getRoot().getRightSon().getLeftSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot().getLeftSon(), tree.getRoot().getLeftSon().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getRightSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getLeftSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(1, tree.getRoot().getLeftSon().getLeftSon().getKey());
+        assertEquals(16, tree.getRoot().getRightSon().getRightSon().getKey());
+        assertEquals(12, tree.getRoot().getRightSon().getLeftSon().getKey());
     }
 
     @Test
@@ -117,7 +156,19 @@ public class TreeTest {
         tree.inserir(8);
         tree.inserir(10);
         tree.inserir(15);
-        System.out.println(Arrays.toString(tree.emLargura()));
+        // System.out.println(Arrays.toString(tree.emLargura()));
+        // root check
+        assertNotNull(tree.getRoot());
+        assertEquals(10, tree.getRoot().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertNotNull(tree.getRoot().getRightSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(15, tree.getRoot().getRightSon().getKey());
     }
 
     @Test
@@ -128,15 +179,46 @@ public class TreeTest {
         tree.inserir(6);
         tree.inserir(15);
         tree.inserir(16);
-        System.out.println(Arrays.toString(tree.emLargura()));
+        // System.out.println(Arrays.toString(tree.emLargura()));
+        // root check
+        assertNotNull(tree.getRoot());
+        assertEquals(10, tree.getRoot().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertNotNull(tree.getRoot().getRightSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(15, tree.getRoot().getRightSon().getKey());
+        // Ve se os filhos que devem existir existem e se os que n devem existir n existem
+        assertNotNull(tree.getRoot().getLeftSon().getLeftSon());
+        assertNull(tree.getRoot().getLeftSon().getRightSon());
+        assertNotNull(tree.getRoot().getRightSon().getRightSon());
+        assertNull(tree.getRoot().getRightSon().getLeftSon());
+        // Ve se os filhos tem os pais certos
+        assertEquals(tree.getRoot().getLeftSon(), tree.getRoot().getLeftSon().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getRightSon().getDaddy());
+        // Ve se as keys estão certas
+        assertEquals(6, tree.getRoot().getLeftSon().getLeftSon().getKey());
+        assertEquals(16, tree.getRoot().getRightSon().getRightSon().getKey());
     }
 
     @Test
     void testeRebalanceamentoDireitaDuploSemFilho() {
         Tree tree = new Tree();
         tree.inserir(15);
-        tree.inserir(10);
         tree.inserir(8);
-        System.out.println(Arrays.toString(tree.emLargura()));
+        tree.inserir(10);
+        assertNotNull(tree.getRoot());
+        assertEquals(10, tree.getRoot().getKey());
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertNotNull(tree.getRoot().getRightSon());
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+        assertEquals(15, tree.getRoot().getRightSon().getKey());
     }
+
 }
