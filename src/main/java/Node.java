@@ -57,10 +57,6 @@ public class Node {
         return key;
     }
 
-    public void setKey(int key) {
-        this.key = key;
-    }
-
     public int getHeight() {
         return height;
     }
