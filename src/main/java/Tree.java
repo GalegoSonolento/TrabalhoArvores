@@ -32,7 +32,7 @@ public class Tree {
 
     public Integer[] emLargura() {
         if (this.root == null)
-            return null;
+            return new Integer[]{null};
         int size = (1 << this.getHeight()) - 1;
         Integer[] result = new Integer[size];
         Node node;
