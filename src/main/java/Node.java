@@ -1,7 +1,7 @@
 public class Node {
     private Node daddy, rightSon, leftSon;
     private int cb;
-    private int key;
+    final private int key;
     private int height;
 
     public Node(Node daddy, Node rightSon, Node leftSon, int cb, int key, int height) {
