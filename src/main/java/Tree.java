@@ -30,6 +30,7 @@ public class Tree {
 
     }
 
+    // tem alguma coisa aqui q tá esquisita, nos prints, a última linha da base não está retornando no array
     public Integer[] emLargura() {
         if (this.root == null)
             return new Integer[]{null};
@@ -125,6 +126,7 @@ public class Tree {
     }
 
     public void rebalancearEsquerda(Node node) {
+        // no rebalanceamento duplo a linha 126 tá dando erro de nullPoiter por causa da linha 125, preciso resolver esse problema de apontamento (talve nesse caso seja nacessário mandar logo o filho do nó problemático)
         Node right = node.getRightSon();
         Node outro = right.getLeftSon();
         right.setLeftSon(node);

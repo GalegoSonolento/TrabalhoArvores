@@ -97,7 +97,7 @@ public class TreeTest {
         Tree tree = new Tree();
         tree.inserir(15);
         tree.inserir(10);
-        tree.inserir(8);
+        tree.inserir(12);
         // System.out.println(Arrays.toString(tree.emLargura()));
         // root check
         assertNotNull(tree.getRoot());
@@ -219,6 +219,18 @@ public class TreeTest {
         assertEquals(8, tree.getRoot().getLeftSon().getKey());
         assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
         assertEquals(15, tree.getRoot().getRightSon().getKey());
+        System.out.println(Arrays.toString(tree.emLargura()));
     }
 
+    @Test
+    void testeRebalanceamentoDireitaDuploComFilho() {
+        Tree tree = new Tree();
+        tree.inserir(15);
+        tree.inserir(8);
+        tree.inserir(16);
+        tree.inserir(10);
+        tree.inserir(2);
+        tree.inserir(12);
+        System.out.println(Arrays.toString(tree.emLargura()));
+    }
 }
