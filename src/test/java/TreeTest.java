@@ -97,7 +97,7 @@ public class TreeTest {
         Tree tree = new Tree();
         tree.inserir(15);
         tree.inserir(10);
-        tree.inserir(8);
+        tree.inserir(12);
         // System.out.println(Arrays.toString(tree.emLargura()));
         // root check
         assertNotNull(tree.getRoot());
