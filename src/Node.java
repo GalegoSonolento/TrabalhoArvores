@@ -2,14 +2,14 @@ package src;
 
 public class Node {
     private Node daddy, rightSon, leftSon;
-    private int fb;
+    private int cb;
     private int key;
 
-    public Node(Node daddy, Node rightSon, Node leftSon, int fb, int key) {
+    public Node(Node daddy, Node rightSon, Node leftSon, int cb, int key) {
         this.daddy = daddy;
         this.rightSon = rightSon;
         this.leftSon = leftSon;
-        this.fb = fb;
+        this.cb = cb;
         this.key = key;
     }
 
@@ -37,12 +37,12 @@ public class Node {
         this.leftSon = leftSon;
     }
 
-    public int getFb() {
-        return fb;
+    public int getCb() {
+        return cb;
     }
 
-    public void setFb(int fb) {
-        this.fb = fb;
+    public void setCb(int cb) {
+        this.cb = cb;
     }
 
     public int getKey() {
