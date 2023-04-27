@@ -77,13 +77,8 @@ public class Tree {
         }
         // TODO: inserir um rebalanceamento
         Node problem = null;
-        int heightControl = 1;
         while (node != null) {
-            heightControl++;
-            if (heightControl > node.getHeight()) node.setHeight(heightControl);
-            int left = node.getLeftSon() == null ? 0 : node.getLeftSon().getHeight();
-            int right = node.getRightSon() == null ? 0 : node.getRightSon().getHeight();
-            node.setCb(left-right);
+            node.updateHeightCb();
             if (node.getCb() > 1 || node.getCb() < -1)
                 problem = node;
             node = node.getDaddy();
@@ -103,14 +98,15 @@ public class Tree {
         }
         if (node.getCb() < -1) {
             if (node.getRightSon().getCb() > 0)
-                rebalancearDireita(node);
+                rebalancearDireita(node.getRightSon());
             rebalancearEsquerda(node);
         }
     }
 
     public void rebalancearDireita(Node node) {
         Node left = node.getLeftSon();
-        Node outro = left.getRightSon();
+        Node leftRight = left.getRightSon();
+
         left.setRightSon(node);
         left.setDaddy(node.getDaddy());
         if (node.getDaddy() != null)
@@ -118,15 +114,20 @@ public class Tree {
         else
             this.root = left;
         node.setDaddy(left);
-        node.setLeftSon(outro);
-        if (outro != null) {
-            outro.setDaddy(node);
+        node.setLeftSon(leftRight);
+        if (leftRight != null) {
+            leftRight.setDaddy(node);
+        }
+        while (node != null) {
+            node.updateHeightCb();
+            node = node.getDaddy();
         }
     }
 
     public void rebalancearEsquerda(Node node) {
         Node right = node.getRightSon();
-        Node outro = right.getLeftSon();
+        Node rightLeft = right.getLeftSon();
+
         right.setLeftSon(node);
         right.setDaddy(node.getDaddy());
         if (node.getDaddy() != null)
@@ -134,11 +135,17 @@ public class Tree {
         else
             this.root = right;
         node.setDaddy(right);
-        node.setRightSon(outro);
-        if (outro != null) {
-            outro.setDaddy(node);
+        node.setRightSon(rightLeft);
+        if (rightLeft != null) {
+            rightLeft.setDaddy(node);
+        }
+
+        while (node != null) {
+            node.updateHeightCb();
+            node = node.getDaddy();
         }
     }
+
 
     public Node pesquisar(int keySearch) {
         Node nodeControl = root;

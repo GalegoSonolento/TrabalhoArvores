@@ -1,3 +1,5 @@
+import java.util.function.Consumer;
+
 public class Node {
     private Node daddy, rightSon, leftSon;
     private int cb;
@@ -63,6 +65,13 @@ public class Node {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void updateHeightCb() {
+        int left = this.getLeftSon() == null ? 0 : this.getLeftSon().getHeight();
+        int right = this.getRightSon() == null ? 0 : this.getRightSon().getHeight();
+        this.cb = left-right;
+        this.height = 1 + Integer.max(left, right);
     }
 
     @Override
