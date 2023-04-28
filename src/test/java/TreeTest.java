@@ -455,6 +455,103 @@ public class TreeTest {
         tree.inserir(16);
         tree.inserir(12);
         assertTrue(tree.excluir(10));
-        assertEquals(2, tree.getRoot().getLeftSon().getKey());
+        assertEquals(12, tree.getRoot().getLeftSon().getKey());
+    }
+
+    @Test
+    void exclusaoNodeComFilhoDoisFilhos() {
+        assertTrue(tree.excluir(10));
+
+        // root check
+        assertNotNull(tree.getRoot());
+        assertNull(tree.getRoot().getDaddy());
+        assertEquals(15, tree.getRoot().getKey());
+        assertEquals(3, tree.getRoot().getHeight());
+        assertEquals(0, tree.getRoot().getCb());
+
+        // verificando os filhos
+
+        assertNotNull(tree.getRoot().getRightSon());
+        assertEquals(20, tree.getRoot().getRightSon().getKey());
+        assertEquals(2, tree.getRoot().getRightSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getCb());
+
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertEquals(8, tree.getRoot().getLeftSon().getKey());
+        assertEquals(2, tree.getRoot().getLeftSon().getHeight());
+        assertEquals(-1, tree.getRoot().getLeftSon().getCb());
+
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+
+        // verifica netos
+        assertNull(tree.getRoot().getLeftSon().getLeftSon());
+
+        assertNotNull(tree.getRoot().getLeftSon().getRightSon());
+        assertEquals(12, tree.getRoot().getLeftSon().getRightSon().getKey());
+        assertEquals(1, tree.getRoot().getLeftSon().getRightSon().getHeight());
+        assertEquals(0, tree.getRoot().getLeftSon().getRightSon().getCb());
+
+        assertNotNull(tree.getRoot().getRightSon().getLeftSon());
+        assertEquals(16, tree.getRoot().getRightSon().getLeftSon().getKey());
+        assertEquals(1, tree.getRoot().getRightSon().getLeftSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getLeftSon().getCb());
+
+        assertNotNull(tree.getRoot().getRightSon().getRightSon());
+        assertEquals(25, tree.getRoot().getRightSon().getRightSon().getKey());
+        assertEquals(1, tree.getRoot().getRightSon().getRightSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getRightSon().getCb());
+
+        assertEquals(tree.getRoot().getLeftSon(), tree.getRoot().getLeftSon().getRightSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getRightSon().getDaddy());
+    }
+
+    @Test
+    void exclusaoNodeComFilhoDoisFilhosRaiz() {
+        assertTrue(tree.excluir(15));
+
+        // root check
+        assertNotNull(tree.getRoot());
+        assertNull(tree.getRoot().getDaddy());
+        assertEquals(12, tree.getRoot().getKey());
+        assertEquals(3, tree.getRoot().getHeight());
+        assertEquals(0, tree.getRoot().getCb());
+
+        // verificando os filhos
+        assertNotNull(tree.getRoot().getRightSon());
+        assertEquals(20, tree.getRoot().getRightSon().getKey());
+        assertEquals(2, tree.getRoot().getRightSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getCb());
+
+        assertNotNull(tree.getRoot().getLeftSon());
+        assertEquals(10, tree.getRoot().getLeftSon().getKey());
+        assertEquals(2, tree.getRoot().getLeftSon().getHeight());
+        assertEquals(1, tree.getRoot().getLeftSon().getCb());
+
+        assertEquals(tree.getRoot(), tree.getRoot().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot(), tree.getRoot().getRightSon().getDaddy());
+
+        // verifica netos
+        assertNotNull(tree.getRoot().getLeftSon().getLeftSon());
+        assertEquals(8, tree.getRoot().getLeftSon().getLeftSon().getKey());
+        assertEquals(1, tree.getRoot().getLeftSon().getLeftSon().getHeight());
+        assertEquals(0, tree.getRoot().getLeftSon().getLeftSon().getCb());
+
+        assertNull(tree.getRoot().getLeftSon().getRightSon());
+
+        assertNotNull(tree.getRoot().getRightSon().getLeftSon());
+        assertEquals(16, tree.getRoot().getRightSon().getLeftSon().getKey());
+        assertEquals(1, tree.getRoot().getRightSon().getLeftSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getLeftSon().getCb());
+
+        assertNotNull(tree.getRoot().getRightSon().getRightSon());
+        assertEquals(25, tree.getRoot().getRightSon().getRightSon().getKey());
+        assertEquals(1, tree.getRoot().getRightSon().getRightSon().getHeight());
+        assertEquals(0, tree.getRoot().getRightSon().getRightSon().getCb());
+
+        assertEquals(tree.getRoot().getLeftSon(), tree.getRoot().getLeftSon().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getLeftSon().getDaddy());
+        assertEquals(tree.getRoot().getRightSon(), tree.getRoot().getRightSon().getRightSon().getDaddy());
     }
 }
