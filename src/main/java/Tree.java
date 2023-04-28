@@ -124,6 +124,118 @@ public class Tree {
             this.rebalancear(problem);
     }
 
+    // esse método pode retornar um boolean pra dizer se deu certo ou n
+    // exclusão ainda não terminada
+    // exclusão por copia
+    public boolean excluir(int keyToExclude) {
+        Node excluded = this.pesquisar(keyToExclude);
+        if (excluded == null){
+            return false;
+        }
+        Node leftSon = excluded.getLeftSon();
+        Node rightSon = excluded.getRightSon();
+        if (rightSon == null && leftSon == null) {
+            if (excluded == root) {
+                root = null;
+                return true;
+            }
+            Tree.replace(excluded, null);
+            updateAndRebalence(excluded.getDaddy());
+            return true;
+        }
+        // TODO: trocar a ordem dos testes de 1 filho e 2 filhos, fiz agora nessa ordem exclusivamente para fins didáticos
+        if (leftSon != null && rightSon == null) {
+            if (excluded == root) {
+                excluded.getLeftSon().setDaddy(null);
+                root = excluded.getLeftSon();
+                return true;
+            }
+            Tree.replace(excluded, leftSon);
+            updateAndRebalence(leftSon);
+            return true;
+        }
+        if (leftSon == null) {
+            if (excluded == root) {
+                excluded.getRightSon().setDaddy(null);
+                root = excluded.getRightSon();
+                return true;
+            }
+            Tree.replace(excluded, rightSon);
+            updateAndRebalence(rightSon);
+            return true;
+        }
+        Node substitute = leftSon;
+
+        while (substitute.getRightSon() != null)
+            substitute = substitute.getRightSon();
+
+        Node substituteLeftSon = substitute.getLeftSon();
+        if (substituteLeftSon != null) {
+            substituteLeftSon.setDaddy(substitute.getDaddy());
+        }
+        if (substitute != leftSon)
+            substitute.getDaddy().setRightSon(substituteLeftSon);
+
+        Tree.replace(excluded, substitute);
+
+        if (excluded == root)
+            root = substitute;
+
+        updateAndRebalence(leftSon);
+
+        return true;
+    }
+
+    private void updateAndRebalence(Node current) {
+        while (current != null) {
+            current.updateHeightCb();
+            if (current.getCb() > 1 || current.getCb() < -1) {
+                System.out.println("a");
+                this.rebalancear(current);
+            }
+            assert current != current.getDaddy();
+            current = current.getDaddy();
+        }
+    }
+
+    private static void replace(Node toKill, Node replacement) {
+        Node dad = toKill.getDaddy();
+        Node leftSon = toKill.getLeftSon();
+        Node rightSon = toKill.getRightSon();
+
+        if (dad != replacement) {
+            if (dad != null) {
+                if (toKill.getKey() < dad.getKey()) {
+                    dad.setLeftSon(replacement);
+                }
+                else {
+                    dad.setRightSon(replacement);
+                }
+            }
+            if (replacement != null) {
+                replacement.setDaddy(dad);
+            }
+        }
+
+        if (replacement != leftSon) {
+            if (leftSon != null) {
+                leftSon.setDaddy(replacement);
+            }
+            if (replacement != null) {
+                replacement.setLeftSon(leftSon);
+            }
+        }
+
+        if (replacement != rightSon) {
+            if (rightSon != null) {
+                rightSon.setDaddy(replacement);
+            }
+            if (replacement != null) {
+                replacement.setRightSon(rightSon);
+            }
+        }
+    }
+
     public void rebalancear(Node node) {
         if (node.getCb() > 1) {
             if (node.getLeftSon().getCb() < 0) {
@@ -153,9 +265,10 @@ public class Tree {
         if (leftRight != null) {
             leftRight.setDaddy(node);
         }
-        while (node != null) {
-            node.updateHeightCb();
-            node = node.getDaddy();
+        Node current = node;
+        while (current != null) {
+            current.updateHeightCb();
+            current = current.getDaddy();
         }
     }
 
