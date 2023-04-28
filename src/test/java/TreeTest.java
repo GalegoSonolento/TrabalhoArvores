@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Queue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
@@ -413,5 +416,41 @@ public class TreeTest {
         assertEquals(0, tree.getRoot().getLeftSon().getLeftSon().getCb());
         assertEquals(0, tree.getRoot().getLeftSon().getRightSon().getCb());
         assertEquals(0, tree.getRoot().getRightSon().getRightSon().getCb());
+    }
+
+    @Test
+    void testePreOrdem() {
+        ArrayList<Node> list = tree.preOrdem();
+        assertEquals(15, list.remove(0).getKey());
+        assertEquals(10, list.remove(0).getKey());
+        assertEquals(8, list.remove(0).getKey());
+        assertEquals(12, list.remove(0).getKey());
+        assertEquals(20, list.remove(0).getKey());
+        assertEquals(16, list.remove(0).getKey());
+        assertEquals(25, list.remove(0).getKey());
+    }
+
+    @Test
+    void testePosOrdem() {
+        ArrayList<Node> list = tree.posOrdem();
+        assertEquals(8, list.remove(0).getKey());
+        assertEquals(12, list.remove(0).getKey());
+        assertEquals(10, list.remove(0).getKey());
+        assertEquals(16, list.remove(0).getKey());
+        assertEquals(25, list.remove(0).getKey());
+        assertEquals(20, list.remove(0).getKey());
+        assertEquals(15, list.remove(0).getKey());
+    }
+
+    @Test
+    void testeEmOrdem() {
+        ArrayList<Node> list = tree.emOrdem();
+        assertEquals(8, list.remove(0).getKey());
+        assertEquals(10, list.remove(0).getKey());
+        assertEquals(12, list.remove(0).getKey());
+        assertEquals(15, list.remove(0).getKey());
+        assertEquals(16, list.remove(0).getKey());
+        assertEquals(20, list.remove(0).getKey());
+        assertEquals(25, list.remove(0).getKey());
     }
 }
