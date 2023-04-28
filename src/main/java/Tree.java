@@ -89,6 +89,60 @@ public class Tree {
             this.rebalancear(problem);
     }
 
+    // esse método pode retornar um boolean pra dizer se deu certo ou n
+    // exclusão ainda não terminada
+    public boolean excluir(int keyToExclude) {
+        Node excluded = this.pesquisar(keyToExclude);
+        if (excluded == null){
+            return false;
+        }
+        if (excluded.getRightSon() == null && excluded.getLeftSon() == null) {
+            if (excluded == root) {
+                root = null;
+                return true;
+            }
+            Node dad = excluded.getDaddy();
+            if (excluded.getKey() == dad.getLeftSon().getKey()) {
+                dad.setLeftSon(null);
+            }
+            else {
+                dad.setRightSon(null);
+            }
+            return true;
+        }
+        // TODO: trocar a ordem dos testes de 1 filho e 2 filhos, fiz agora nessa ordem exclusivamente para fins didáticos
+        if (excluded.getLeftSon() != null && excluded.getRightSon() == null) {
+            if (excluded == root) {
+                excluded.getLeftSon().setDaddy(null);
+                root = excluded.getLeftSon();
+                return true;
+            }
+            Node dad = excluded.getDaddy();
+            Node leftSon = excluded.getLeftSon();
+            if (excluded.getKey() == dad.getLeftSon().getKey()) {
+                dad.setLeftSon(excluded.getLeftSon());
+            }
+            else {
+                dad.setRightSon(excluded.getLeftSon());
+            }
+            leftSon.setDaddy(dad);
+            return true;
+        }
+        if (excluded.getLeftSon() == null && excluded.getRightSon() != null) {
+            if (excluded == root) {
+                excluded.getRightSon().setDaddy(null);
+                root = excluded.getRightSon();
+                return true;
+            }
+            Node dad = excluded.getDaddy();
+            Node rightSon = excluded.getRightSon();
+            dad.setRightSon(excluded.getRightSon());
+            rightSon.setDaddy(dad);
+            return true;
+        }
+        return true;
+    }
+
     public void rebalancear(Node node) {
         if (node.getCb() > 1) {
             if (node.getLeftSon().getCb() < 0) {

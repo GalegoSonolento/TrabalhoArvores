@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
@@ -413,5 +415,46 @@ public class TreeTest {
         assertEquals(0, tree.getRoot().getLeftSon().getLeftSon().getCb());
         assertEquals(0, tree.getRoot().getLeftSon().getRightSon().getCb());
         assertEquals(0, tree.getRoot().getRightSon().getRightSon().getCb());
+    }
+
+    @Test
+    void exclusaoNoSemFilhos(){
+        assertTrue(tree.excluir(25));
+        assertNull(tree.pesquisar(25));
+        assertTrue(tree.excluir(8));
+        assertNull(tree.pesquisar(8));
+    }
+
+    @Test
+    void tentativaDeExclusaoDeNaoExistente() {
+        assertFalse(tree.excluir(56));
+    }
+
+    @Test
+    void exclusaoDeRootSemFilhos() {
+        Tree teste = new Tree(5);
+        assertEquals(5, teste.getRoot().getKey());
+        assertTrue(teste.excluir(5));
+        assertNull(teste.getRoot());
+    }
+
+    @Test
+    void exclusaoNodeComFilhoEsquerda() {
+        Tree tree = new Tree(15);
+        tree.inserir(10);
+        tree.inserir(16);
+        tree.inserir(2);
+        assertTrue(tree.excluir(10));
+        assertEquals(2, tree.getRoot().getLeftSon().getKey());
+    }
+
+    @Test
+    void exclusaoNodeComFilhoDireita() {
+        Tree tree = new Tree(15);
+        tree.inserir(10);
+        tree.inserir(16);
+        tree.inserir(12);
+        assertTrue(tree.excluir(10));
+        assertEquals(2, tree.getRoot().getLeftSon().getKey());
     }
 }
