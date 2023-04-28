@@ -105,6 +105,7 @@ public class Tree {
                 return true;
             }
             Tree.replace(excluded, null);
+            updateAndRebalence(excluded.getDaddy());
             return true;
         }
         // TODO: trocar a ordem dos testes de 1 filho e 2 filhos, fiz agora nessa ordem exclusivamente para fins didáticos
@@ -115,6 +116,7 @@ public class Tree {
                 return true;
             }
             Tree.replace(excluded, leftSon);
+            updateAndRebalence(leftSon);
             return true;
         }
         if (leftSon == null) {
@@ -124,6 +126,7 @@ public class Tree {
                 return true;
             }
             Tree.replace(excluded, rightSon);
+            updateAndRebalence(rightSon);
             return true;
         }
         Node substitute = leftSon;
@@ -143,17 +146,21 @@ public class Tree {
         if (excluded == root)
             root = substitute;
 
-        Node current = leftSon;
+        updateAndRebalence(leftSon);
+
+        return true;
+    }
+
+    private void updateAndRebalence(Node current) {
         while (current != null) {
             current.updateHeightCb();
             if (current.getCb() > 1 || current.getCb() < -1) {
+                System.out.println("a");
                 this.rebalancear(current);
             }
             assert current != current.getDaddy();
             current = current.getDaddy();
         }
-
-        return true;
     }
 
     private static void replace(Node toKill, Node replacement) {
