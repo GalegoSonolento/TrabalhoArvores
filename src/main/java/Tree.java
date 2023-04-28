@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Tree {
     private Node root;
@@ -18,16 +20,49 @@ public class Tree {
         root = new Node(null, key);
     }
 
-    public void preOrdem() {
-
+    public ArrayList<Node> preOrdem() {
+        ArrayList<Node> list = new ArrayList<>();
+        Tree.preOrdem(this.root, list);
+        return list;
     }
 
-    public void posOrdem() {
-
+    private static void preOrdem(Node current, ArrayList<Node> list) {
+        if (current == null) {
+            return;
+        }
+        list.add(current);
+        preOrdem(current.getLeftSon(), list);
+        preOrdem(current.getRightSon(), list);
     }
 
-    public void emOrdem() {
+    public ArrayList<Node> posOrdem() {
+        ArrayList<Node> list = new ArrayList<>();
+        Tree.posOrdem(this.root, list);
+        return list;
+    }
 
+    private static void posOrdem(Node current, ArrayList<Node> list) {
+        if (current == null) {
+            return;
+        }
+        posOrdem(current.getLeftSon(), list);
+        posOrdem(current.getRightSon(), list);
+        list.add(current);
+    }
+
+    public ArrayList<Node> emOrdem() {
+        ArrayList<Node> list = new ArrayList<>();
+        Tree.emOrdem(this.root, list);
+        return list;
+    }
+
+    private static void emOrdem(Node current, ArrayList<Node> list) {
+        if (current == null) {
+            return;
+        }
+        emOrdem(current.getLeftSon(), list);
+        list.add(current);
+        emOrdem(current.getRightSon(), list);
     }
 
     public Integer[] emLargura() {
