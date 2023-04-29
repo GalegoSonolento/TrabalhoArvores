@@ -81,15 +81,15 @@ public class Node {
         out.append(this.hashCode());
         out.append(", daddy=");
         if (daddy != null) {
-            out.append(daddy.hashCode());
+            out.append(daddy.getKey());
         }
         out.append(", leftSon=");
         if (leftSon != null) {
-            out.append(leftSon.hashCode());
+            out.append(leftSon.getKey());
         }
         out.append(", rightSon=");
         if (rightSon != null) {
-            out.append(rightSon.hashCode());
+            out.append(rightSon.getKey());
         }
         out.append(", cb=");
         out.append(cb);

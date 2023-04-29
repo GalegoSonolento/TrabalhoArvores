@@ -1,5 +1,17 @@
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class DisplayTree {
-    public static String display(Tree t) {
+    public static String string(Tree t) {
         if (t == null)
             return null;
         StringBuilder out = new StringBuilder("""
@@ -78,11 +90,36 @@ public class DisplayTree {
         return out.toString();
     }
 
+    public static void display(Tree tree) {
+        try {
+            Path file = Paths.get("index.html");
+            Files.write(file, Collections.singleton(string(tree)), StandardCharsets.UTF_8);
+            try {
+                System.out.println("sa");
+                Desktop.getDesktop().browse(file.toUri());
+                System.out.println("pe");
+
+            } catch (Exception e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
-        Tree tree = Utils.perfect(128);
-        String html = display(tree);
-        System.out.println(html);
+        Tree tree = new Tree();
+        tree.inserir(8);
+        tree.inserir(4);
+        tree.inserir(354);
+        tree.inserir(2345);
+        tree.inserir(34);
+        tree.inserir(2);
+        tree.inserir(1);
+
+        display(tree);
     }
 
 }

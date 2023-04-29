@@ -239,9 +239,18 @@ public class Tree {
     public void rebalancear(Node node) {
         if (node.getCb() > 1) {
             if (node.getLeftSon().getCb() < 0) {
+                System.out.println("asdasdsdfsfsagfsadg");
                 rebalancearEsquerda(node.getLeftSon());
             }
+            System.out.println(node);
+            System.out.println(node.getLeftSon());
+            Node leftSon = node.getLeftSon();
             rebalancearDireita(node);
+            System.out.println(node);
+            System.out.println(leftSon);
+            System.out.println(this.root);
+            System.out.println(Arrays.toString(this.emLargura()));
+
         }
         if (node.getCb() < -1) {
             if (node.getRightSon().getCb() > 0)
@@ -252,19 +261,23 @@ public class Tree {
 
     public void rebalancearDireita(Node node) {
         Node left = node.getLeftSon();
+        Node right = node.getRightSon();
         Node leftRight = left.getRightSon();
+        Node dad = node.getDaddy();
 
+        Tree.replace(node, left);
         left.setRightSon(node);
-        left.setDaddy(node.getDaddy());
-        if (node.getDaddy() != null)
-            node.getDaddy().setRightSon(left);
-        else
-            this.root = left;
         node.setDaddy(left);
-        node.setLeftSon(leftRight);
-        if (leftRight != null) {
+        if (leftRight != null)
             leftRight.setDaddy(node);
-        }
+        node.setLeftSon(leftRight);
+
+        if (right != null)
+            right.setDaddy(node);
+
+        if (dad == null)
+            root = left;
+
         Node current = node;
         while (current != null) {
             current.updateHeightCb();
@@ -274,19 +287,21 @@ public class Tree {
 
     public void rebalancearEsquerda(Node node) {
         Node right = node.getRightSon();
+        Node left = node.getLeftSon();
         Node rightLeft = right.getLeftSon();
+        Node dad = node.getDaddy();
 
+        Tree.replace(node, right);
         right.setLeftSon(node);
-        right.setDaddy(node.getDaddy());
-        if (node.getDaddy() != null)
-            node.getDaddy().setLeftSon(right);
-        else
-            this.root = right;
         node.setDaddy(right);
-        node.setRightSon(rightLeft);
-        if (rightLeft != null) {
+        if (rightLeft != null)
             rightLeft.setDaddy(node);
-        }
+        node.setRightSon(rightLeft);
+        if (dad == null)
+            root = right;
+
+        if (left != null)
+            left.setDaddy(node);
 
         while (node != null) {
             node.updateHeightCb();
