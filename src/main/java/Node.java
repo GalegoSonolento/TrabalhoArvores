@@ -78,7 +78,7 @@ public class Node {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("Node { this=");
-        out.append(this.hashCode());
+        out.append(this.key);
         out.append(", daddy=");
         if (daddy != null) {
             out.append(daddy.getKey());
