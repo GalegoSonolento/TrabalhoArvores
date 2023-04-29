@@ -78,18 +78,18 @@ public class Node {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("Node { this=");
-        out.append(this.hashCode());
+        out.append(this.key);
         out.append(", daddy=");
         if (daddy != null) {
-            out.append(daddy.hashCode());
+            out.append(daddy.key);
         }
         out.append(", leftSon=");
         if (leftSon != null) {
-            out.append(leftSon.hashCode());
+            out.append(leftSon.key);
         }
         out.append(", rightSon=");
         if (rightSon != null) {
-            out.append(rightSon.hashCode());
+            out.append(rightSon.key);
         }
         out.append(", cb=");
         out.append(cb);
