@@ -1,3 +1,11 @@
+import java.awt.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+
 public class DisplayTree {
     public static String display(Tree t) {
         if (t == null)
@@ -80,9 +88,28 @@ public class DisplayTree {
 
 
     public static void main(String[] args) {
-        Tree tree = Utils.perfect(128);
-        String html = display(tree);
-        System.out.println(html);
+        Tree tree = new Tree();
+        tree.inserir(8);
+        tree.inserir(4);
+        tree.inserir(354);
+        tree.inserir(2345);
+        tree.inserir(34);
+        tree.inserir(2);
+        tree.inserir(1);
+        try {
+            Path file = Paths.get("index.html");
+            Files.write(file, Collections.singleton(display(tree)), StandardCharsets.UTF_8);
+            try {
+                Desktop.getDesktop().browse(file.toUri());
+
+            } catch (Exception e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 }

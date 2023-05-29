@@ -1,15 +1,17 @@
 import java.util.function.Consumer;
 
 public class Node {
-    private Node daddy, rightSon, leftSon;
+    private Node daddy;
+
+    private final Node[] children = new Node[]{null, null};
     private int cb;
     final private int key;
     private int height;
 
     public Node(Node daddy, Node rightSon, Node leftSon, int cb, int key, int height) {
         this.daddy = daddy;
-        this.rightSon = rightSon;
-        this.leftSon = leftSon;
+        this.children[0] = leftSon;
+        this.children[1] = rightSon;
         this.cb = cb;
         this.key = key;
         this.height = height;
@@ -32,19 +34,27 @@ public class Node {
     }
 
     public Node getRightSon() {
-        return rightSon;
+        return children[1];
     }
 
     public void setRightSon(Node rightSon) {
-        this.rightSon = rightSon;
+        this.children[1] = rightSon;
     }
 
     public Node getLeftSon() {
-        return leftSon;
+        return children[0];
     }
 
     public void setLeftSon(Node leftSon) {
-        this.leftSon = leftSon;
+        this.children[0] = leftSon;
+    }
+
+    public void changeChild(int pos, Node node) {
+        this.children[pos] = node;
+    }
+
+    public Node getChild(int pos) {
+        return children[pos];
     }
 
     public int getCb() {
@@ -84,12 +94,12 @@ public class Node {
             out.append(daddy.hashCode());
         }
         out.append(", leftSon=");
-        if (leftSon != null) {
-            out.append(leftSon.hashCode());
+        if (children[0] != null) {
+            out.append(children[0].hashCode());
         }
         out.append(", rightSon=");
-        if (rightSon != null) {
-            out.append(rightSon.hashCode());
+        if (children[1] != null) {
+            out.append(children[1].hashCode());
         }
         out.append(", cb=");
         out.append(cb);

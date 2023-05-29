@@ -2,8 +2,10 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class Tree {
+public class Tree implements Iterable<Integer> {
     private Node root;
+
+    private Caminhamento iterator;
 
     public Node getRoot() {
         return root;
@@ -87,7 +89,6 @@ public class Tree {
         return result;
     }
 
-    // TODO: identificar onde colocar o height
     public void inserir(int key) throws SameKeyException {
         Node node = root;
         if (node == null) {
@@ -96,21 +97,14 @@ public class Tree {
         }
         while (true) {
             if (node.getKey() == key) throw new SameKeyException(String.format("Já existe uma chave com o número %d.", key));
-            if (node.getKey() > key) {
-                if (node.getLeftSon() == null) {
-                    node.setLeftSon(new Node(node, key));
-                    break;
-                }
-                node = node.getLeftSon();
-            } else {
-                if (node.getRightSon() == null) {
-                    node.setRightSon(new Node(node, key));
-                    break;
-                }
-                node = node.getRightSon();
+            int pos = node.getKey() >= key ? 0 : 1;
+            if (node.getChild(pos) == null) {
+                node.changeChild(pos, new Node(node, key));
+                break;
             }
+            node = node.getChild(pos);
         }
-        // TODO: inserir um rebalanceamento
+
         Node problem = null;
         while (node != null) {
             node.updateHeightCb();
@@ -118,8 +112,7 @@ public class Tree {
                 problem = node;
             node = node.getDaddy();
         }
-        // TODO: Incrementar a altura height ++;
-        // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
+
         if (problem != null)
             this.rebalancear(problem);
     }
@@ -190,11 +183,24 @@ public class Tree {
         while (current != null) {
             current.updateHeightCb();
             if (current.getCb() > 1 || current.getCb() < -1) {
-                System.out.println("a");
                 this.rebalancear(current);
             }
             assert current != current.getDaddy();
             current = current.getDaddy();
+        }
+    }
+
+    public static void changeDaddy(Node child, Node daddy) {
+        if (daddy != child) {
+            if (daddy != null) {
+                if (child.getKey() < daddy.getKey()) {
+                    daddy.setLeftSon(child);
+                }
+                else {
+                    daddy.setRightSon(child);
+                }
+            }
+            child.setDaddy(daddy);
         }
     }
 
@@ -237,33 +243,31 @@ public class Tree {
     }
 
     public void rebalancear(Node node) {
-        if (node.getCb() > 1) {
-            if (node.getLeftSon().getCb() < 0) {
-                rebalancearEsquerda(node.getLeftSon());
-            }
-            rebalancearDireita(node);
+        if (node.getCb() <= 1 && node.getCb() >= -1)
+            return;
+        int pos = node.getCb() > 0 ? 1 : 0;
+        int oppositeChild = 1 - pos;
+        int childCb = node.getChild(oppositeChild).getCb();
+        if (childCb != 0 && childCb * node.getCb() < 0) {
+            rebalancear(pos, node.getChild(oppositeChild));
         }
-        if (node.getCb() < -1) {
-            if (node.getRightSon().getCb() > 0)
-                rebalancearDireita(node.getRightSon());
-            rebalancearEsquerda(node);
-        }
+        rebalancear(oppositeChild, node);
     }
 
-    public void rebalancearDireita(Node node) {
-        Node left = node.getLeftSon();
-        Node leftRight = left.getRightSon();
+    public void rebalancear(int pos, Node node) {
+        Node child = node.getChild(pos);
+        int oppositeChild = 1 - pos;
+        Node childOtherChild = child.getChild(oppositeChild);
 
-        left.setRightSon(node);
-        left.setDaddy(node.getDaddy());
-        if (node.getDaddy() != null)
-            node.getDaddy().setRightSon(left);
-        else
-            this.root = left;
-        node.setDaddy(left);
-        node.setLeftSon(leftRight);
-        if (leftRight != null) {
-            leftRight.setDaddy(node);
+        child.changeChild(oppositeChild, node);
+        child.setDaddy(node.getDaddy());
+        if (node.getDaddy() == null)
+            this.root = child;
+        changeDaddy(child, node.getDaddy());
+        node.setDaddy(child);
+        node.changeChild(pos, childOtherChild);
+        if (childOtherChild != null) {
+            childOtherChild.setDaddy(node);
         }
         Node current = node;
         while (current != null) {
@@ -271,29 +275,6 @@ public class Tree {
             current = current.getDaddy();
         }
     }
-
-    public void rebalancearEsquerda(Node node) {
-        Node right = node.getRightSon();
-        Node rightLeft = right.getLeftSon();
-
-        right.setLeftSon(node);
-        right.setDaddy(node.getDaddy());
-        if (node.getDaddy() != null)
-            node.getDaddy().setLeftSon(right);
-        else
-            this.root = right;
-        node.setDaddy(right);
-        node.setRightSon(rightLeft);
-        if (rightLeft != null) {
-            rightLeft.setDaddy(node);
-        }
-
-        while (node != null) {
-            node.updateHeightCb();
-            node = node.getDaddy();
-        }
-    }
-
 
     public Node pesquisar(int keySearch) {
         Node nodeControl = root;
@@ -317,6 +298,16 @@ public class Tree {
     @Override
     public String toString() {
         return "Tree{}";
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        iterator.setRoot(root);
+        return iterator;
+    }
+
+    public void setIterator(Caminhamento iterator) {
+        this.iterator = iterator;
     }
 }
 

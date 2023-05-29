@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -371,7 +372,7 @@ public class TreeTest {
         tree.inserir(10);
         tree.inserir(16);
         tree.inserir(9);
-        // System.out.println(Arrays.toString(tree.emLargura()));
+
         // root check
         assertNotNull(tree.getRoot());
         assertEquals(10, tree.getRoot().getKey());
@@ -657,6 +658,44 @@ public class TreeTest {
     }
 
     @Test
+    void testePreOrdemIterator() {
+        int[] preOrdem = {15,10,8,12,20,16,25};
+        Iterator<Integer> iter = Arrays.stream(preOrdem).iterator();
+        tree.setIterator(new PreOrdem());
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
+    void testePreOrdemUltimoADireita() {
+        Tree tree = new Tree(12);
+        tree.inserir(8);
+        tree.inserir(15);
+        tree.inserir(10);
+        int[] emOrdem = {12,8,10,15};
+        tree.setIterator(new PreOrdem());
+        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
+    void testePreOrdemUltimoADireitaAntigoPreOrdem() {
+        Tree tree = new Tree(12);
+        tree.inserir(8);
+        tree.inserir(15);
+        tree.inserir(10);
+        int[] emOrdem = {12,8,10,15};
+        tree.setIterator(new PreOrdem());
+        Iterator<Integer> iter = tree.preOrdem().stream().map(Node::getKey).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
     void testePosOrdem() {
         ArrayList<Node> list = tree.posOrdem();
         assertEquals(8, list.remove(0).getKey());
@@ -678,5 +717,43 @@ public class TreeTest {
         assertEquals(16, list.remove(0).getKey());
         assertEquals(20, list.remove(0).getKey());
         assertEquals(25, list.remove(0).getKey());
+    }
+
+    @Test
+    void testeEmOrdemIterator() {
+        int[] emOrdem = {8,10,12,15,16,20,25};
+        tree.setIterator(new EmOrdem());
+        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
+    void testeEmOrdemUltimoADireita() {
+        Tree tree = new Tree(12);
+        tree.inserir(8);
+        tree.inserir(15);
+        tree.inserir(10);
+        int[] emOrdem = {8,10,12,15};
+        tree.setIterator(new EmOrdem());
+        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
+    void testeEmOrdemUltimoADireitaAntigoEmOrdem() {
+        Tree tree = new Tree(12);
+        tree.inserir(8);
+        tree.inserir(15);
+        tree.inserir(10);
+        int[] emOrdem = {8,10,12,15};
+        tree.setIterator(new EmOrdem());
+        Iterator<Integer> iter = tree.emOrdem().stream().map(Node::getKey).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
     }
 }
