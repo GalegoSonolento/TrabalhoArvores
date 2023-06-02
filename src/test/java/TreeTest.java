@@ -5,12 +5,11 @@ import java.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
-    Tree tree = new Tree();
+    Tree<Integer> tree = new Tree<>();
     @BeforeEach
     void arvorePreMontada() {
         tree.inserir(15);
@@ -23,7 +22,7 @@ public class TreeTest {
     }
     @Test
     void inserirTesteErroSameKey() {
-        Tree arvore = new Tree(1);
+        Tree<Integer> arvore = new Tree<>(1);
         try{
            arvore.inserir(1);
        }catch (SameKeyException e){
@@ -32,13 +31,13 @@ public class TreeTest {
     }
     @Test
     void inserirCorreto() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         assertNull(tree.getRoot());
     }
 
     @Test
     void testeHeight() {
-        Tree tree = new Tree(1);
+        Tree<Integer> tree = new Tree<>(1);
         assertEquals(1, tree.getHeight());
     }
     @Test
@@ -53,11 +52,6 @@ public class TreeTest {
         assertEquals(12, tree.getRoot().getLeftSon().getRightSon().getKey());
         assertEquals(16, tree.getRoot().getRightSon().getLeftSon().getKey());
         assertEquals(25, tree.getRoot().getRightSon().getRightSon().getKey());
-        /*
-        System.out.println("       " + tree.getRoot().getKey() + "\n" +
-                "  " + tree.getRoot().getLeftSon().getKey() + "-------" + tree.getRoot().getRightSon().getKey() + "\n" +
-                tree.getRoot().getLeftSon().getLeftSon().getKey() + "---" + tree.getRoot().getLeftSon().getRightSon().getKey() + "   " + tree.getRoot().getRightSon().getLeftSon().getKey() + "---" + tree.getRoot().getRightSon().getRightSon().getKey());
-        */
     }
 
     @Test
@@ -73,12 +67,12 @@ public class TreeTest {
 
     @Test
     void testeEmLargura() {
-        assertArrayEquals(new Integer[]{15,10,20,8,12,16,25}, tree.emLargura());
+        assertArrayEquals(new Integer[]{15,10,20,8,12,16,25}, tree.emLargura().toArray(new Integer[0]));
     }
 
     @Test
     void testeEmLarguraBanguela() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(15);
         tree.inserir(10);
         tree.inserir(20);
@@ -86,7 +80,8 @@ public class TreeTest {
         // tree.inserir(16); arvore fica com um null no meio
         tree.inserir(12);
         tree.inserir(25);
-        assertArrayEquals(new Integer[]{15,10,20,8,12,null,25}, tree.emLargura());
+        System.out.println(Arrays.toString(tree.emLargura().toArray(new Integer[0])));
+        assertArrayEquals(new Integer[]{15,10,20,8,12,null,25}, tree.emLargura().toArray(new Integer[0]));
     }
 
     @Test
@@ -98,7 +93,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoDireitaSimplesSemFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(15);
         tree.inserir(10);
         tree.inserir(12);
@@ -126,7 +121,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoDireitaSimplesComFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(15);
         tree.inserir(10);
         tree.inserir(16);
@@ -174,7 +169,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaSimplesSemFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(8);
         tree.inserir(10);
         tree.inserir(15);
@@ -202,7 +197,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaSimplesComFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(8);
         tree.inserir(10);
         tree.inserir(6);
@@ -251,7 +246,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoDireitaDuploSemFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(15);
         tree.inserir(8);
         tree.inserir(10);
@@ -275,7 +270,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoDireitaDuploComFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(15);
         tree.inserir(10);
         tree.inserir(16);
@@ -335,7 +330,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaDuploSemFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(8);
         tree.inserir(16);
         tree.inserir(10);
@@ -365,7 +360,7 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaDuploComFilho() {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(8);
         tree.inserir(11);
         tree.inserir(6);
@@ -436,7 +431,7 @@ public class TreeTest {
 
     @Test
     void exclusaoDeRootSemFilhos() {
-        Tree teste = new Tree(5);
+        Tree<Integer> teste = new Tree<>(5);
         assertEquals(5, teste.getRoot().getKey());
         assertTrue(teste.excluir(5));
         assertNull(teste.getRoot());
@@ -444,7 +439,7 @@ public class TreeTest {
 
     @Test
     void exclusaoNodeComFilhoEsquerda() {
-        Tree tree = new Tree(15);
+        Tree<Integer> tree = new Tree<>(15);
         tree.inserir(10);
         tree.inserir(16);
         tree.inserir(2);
@@ -454,7 +449,7 @@ public class TreeTest {
 
     @Test
     void exclusaoNodeComFilhoDireita() {
-        Tree tree = new Tree(15);
+        Tree<Integer> tree = new Tree<>(15);
         tree.inserir(10);
         tree.inserir(16);
         tree.inserir(12);
@@ -560,7 +555,7 @@ public class TreeTest {
     }
     @Test
     void exclusaoNodeSemFilhoComRebalanceamento() {
-        Tree tree = new Tree(15);
+        Tree<Integer> tree = new Tree<>(15);
         tree.inserir(10);
         tree.inserir(16);
         tree.inserir(8);
@@ -591,7 +586,7 @@ public class TreeTest {
 
     @Test
     void exclusaoNodeComFilhoUmDireitaComRebalanceamento() {
-        Tree tree = new Tree(15);
+        Tree<Integer> tree = new Tree<>(15);
         tree.inserir(10);
         tree.inserir(16);
         tree.inserir(8);
@@ -647,7 +642,7 @@ public class TreeTest {
 
     @Test
     void testePreOrdem() {
-        ArrayList<Node> list = tree.preOrdem();
+        ArrayList<Node<Integer>> list = tree.preOrdem();
         assertEquals(15, list.remove(0).getKey());
         assertEquals(10, list.remove(0).getKey());
         assertEquals(8, list.remove(0).getKey());
@@ -661,7 +656,7 @@ public class TreeTest {
     void testePreOrdemIterator() {
         int[] preOrdem = {15,10,8,12,20,16,25};
         Iterator<Integer> iter = Arrays.stream(preOrdem).iterator();
-        tree.setIterator(new PreOrdem());
+        tree.setIterator(new PreOrdem<>());
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
         }
@@ -669,12 +664,12 @@ public class TreeTest {
 
     @Test
     void testePreOrdemUltimoADireita() {
-        Tree tree = new Tree(12);
+        Tree<Integer> tree = new Tree<>(12);
         tree.inserir(8);
         tree.inserir(15);
         tree.inserir(10);
         int[] emOrdem = {12,8,10,15};
-        tree.setIterator(new PreOrdem());
+        tree.setIterator(new PreOrdem<>());
         Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
@@ -683,12 +678,11 @@ public class TreeTest {
 
     @Test
     void testePreOrdemUltimoADireitaAntigoPreOrdem() {
-        Tree tree = new Tree(12);
+        Tree<Integer> tree = new Tree<>(12);
         tree.inserir(8);
         tree.inserir(15);
         tree.inserir(10);
-        int[] emOrdem = {12,8,10,15};
-        tree.setIterator(new PreOrdem());
+        tree.setIterator(new PreOrdem<>());
         Iterator<Integer> iter = tree.preOrdem().stream().map(Node::getKey).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
@@ -697,7 +691,7 @@ public class TreeTest {
 
     @Test
     void testePosOrdem() {
-        ArrayList<Node> list = tree.posOrdem();
+        ArrayList<Node<Integer>> list = tree.posOrdem();
         assertEquals(8, list.remove(0).getKey());
         assertEquals(12, list.remove(0).getKey());
         assertEquals(10, list.remove(0).getKey());
@@ -709,7 +703,7 @@ public class TreeTest {
 
     @Test
     void testeEmOrdem() {
-        ArrayList<Node> list = tree.emOrdem();
+        ArrayList<Node<Integer>> list = tree.emOrdem();
         assertEquals(8, list.remove(0).getKey());
         assertEquals(10, list.remove(0).getKey());
         assertEquals(12, list.remove(0).getKey());
@@ -722,7 +716,7 @@ public class TreeTest {
     @Test
     void testeEmOrdemIterator() {
         int[] emOrdem = {8,10,12,15,16,20,25};
-        tree.setIterator(new EmOrdem());
+        tree.setIterator(new EmOrdem<>());
         Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
@@ -731,12 +725,12 @@ public class TreeTest {
 
     @Test
     void testeEmOrdemUltimoADireita() {
-        Tree tree = new Tree(12);
+        Tree<Integer> tree = new Tree<>(12);
         tree.inserir(8);
         tree.inserir(15);
         tree.inserir(10);
         int[] emOrdem = {8,10,12,15};
-        tree.setIterator(new EmOrdem());
+        tree.setIterator(new EmOrdem<>());
         Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
@@ -745,12 +739,11 @@ public class TreeTest {
 
     @Test
     void testeEmOrdemUltimoADireitaAntigoEmOrdem() {
-        Tree tree = new Tree(12);
+        Tree<Integer> tree = new Tree<>(12);
         tree.inserir(8);
         tree.inserir(15);
         tree.inserir(10);
-        int[] emOrdem = {8,10,12,15};
-        tree.setIterator(new EmOrdem());
+        tree.setIterator(new EmOrdem<>());
         Iterator<Integer> iter = tree.emOrdem().stream().map(Node::getKey).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);

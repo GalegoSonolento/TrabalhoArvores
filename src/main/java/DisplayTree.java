@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 public class DisplayTree {
-    public static String display(Tree t) {
+    public static String display(Tree<Integer> t) {
         if (t == null)
             return null;
         StringBuilder out = new StringBuilder("""
@@ -60,7 +60,7 @@ public class DisplayTree {
                     <table>
                         <tbody>
                 """);
-        Integer[] keys = t.emLargura();
+        Integer[] keys = t.emLargura().toArray(new Integer[0]);
         out.append("            <tr>\n");
         out.append("                <th>\n");
         out.append("                    ");
@@ -88,7 +88,7 @@ public class DisplayTree {
 
 
     public static void main(String[] args) {
-        Tree tree = new Tree();
+        Tree<Integer> tree = new Tree<>();
         tree.inserir(8);
         tree.inserir(4);
         tree.inserir(354);

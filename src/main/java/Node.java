@@ -1,14 +1,14 @@
 import java.util.function.Consumer;
 
-public class Node {
-    private Node daddy;
+public class Node<T extends Comparable<T>> {
+    private Node<T> daddy;
 
-    private final Node[] children = new Node[]{null, null};
+    private final Node<T>[] children = new Node[]{null, null};
     private int cb;
-    final private int key;
+    final private T key;
     private int height;
 
-    public Node(Node daddy, Node rightSon, Node leftSon, int cb, int key, int height) {
+    public Node(Node<T> daddy, Node<T> rightSon, Node<T> leftSon, int cb, T key, int height) {
         this.daddy = daddy;
         this.children[0] = leftSon;
         this.children[1] = rightSon;
@@ -17,43 +17,43 @@ public class Node {
         this.height = height;
     }
 
-    public Node(Node daddy, Node rightSon, Node leftSon, int cb, int key) {
+    public Node(Node<T> daddy, Node<T> rightSon, Node<T> leftSon, int cb, T key) {
         this(daddy, rightSon, leftSon, cb, key, 1);
     }
 
-    public Node(Node daddy, int key) {
+    public Node(Node<T> daddy, T key) {
         this(daddy, null, null, 0, key);
     }
 
-    public Node getDaddy() {
+    public Node<T> getDaddy() {
         return daddy;
     }
 
-    public void setDaddy(Node daddy) {
+    public void setDaddy(Node<T> daddy) {
         this.daddy = daddy;
     }
 
-    public Node getRightSon() {
+    public Node<T> getRightSon() {
         return children[1];
     }
 
-    public void setRightSon(Node rightSon) {
+    public void setRightSon(Node<T> rightSon) {
         this.children[1] = rightSon;
     }
 
-    public Node getLeftSon() {
+    public Node<T> getLeftSon() {
         return children[0];
     }
 
-    public void setLeftSon(Node leftSon) {
+    public void setLeftSon(Node<T> leftSon) {
         this.children[0] = leftSon;
     }
 
-    public void changeChild(int pos, Node node) {
+    public void changeChild(int pos, Node<T> node) {
         this.children[pos] = node;
     }
 
-    public Node getChild(int pos) {
+    public Node<T> getChild(int pos) {
         return children[pos];
     }
 
@@ -65,7 +65,7 @@ public class Node {
         this.cb = cb;
     }
 
-    public int getKey() {
+    public T getKey() {
         return key;
     }
 

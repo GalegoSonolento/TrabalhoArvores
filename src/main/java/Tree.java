@@ -1,13 +1,11 @@
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
-public class Tree implements Iterable<Integer> {
-    private Node root;
+public class Tree<T extends Comparable<T>> implements Iterable<T> {
+    private Node<T> root;
 
-    private Caminhamento iterator;
+    private Caminhamento<T> iterator;
 
-    public Node getRoot() {
+    public Node<T> getRoot() {
         return root;
     }
 
@@ -18,17 +16,17 @@ public class Tree implements Iterable<Integer> {
     // TODO: Sobrecarregar o construtor com mais argumentos
     public Tree() {}
 
-    public Tree(int key) {
-        root = new Node(null, key);
+    public Tree(T key) {
+        root = new Node<T>(null, key);
     }
 
-    public ArrayList<Node> preOrdem() {
-        ArrayList<Node> list = new ArrayList<>();
-        Tree.preOrdem(this.root, list);
+    public ArrayList<Node<T>> preOrdem() {
+        ArrayList<Node<T>> list = new ArrayList<>();
+        preOrdem(this.root, list);
         return list;
     }
 
-    private static void preOrdem(Node current, ArrayList<Node> list) {
+    private void preOrdem(Node<T> current, ArrayList<Node<T>> list) {
         if (current == null) {
             return;
         }
@@ -37,13 +35,13 @@ public class Tree implements Iterable<Integer> {
         preOrdem(current.getRightSon(), list);
     }
 
-    public ArrayList<Node> posOrdem() {
-        ArrayList<Node> list = new ArrayList<>();
-        Tree.posOrdem(this.root, list);
+    public ArrayList<Node<T>> posOrdem() {
+        ArrayList<Node<T>> list = new ArrayList<>();
+        posOrdem(this.root, list);
         return list;
     }
 
-    private static void posOrdem(Node current, ArrayList<Node> list) {
+    private void posOrdem(Node<T> current, ArrayList<Node<T>> list) {
         if (current == null) {
             return;
         }
@@ -52,13 +50,13 @@ public class Tree implements Iterable<Integer> {
         list.add(current);
     }
 
-    public ArrayList<Node> emOrdem() {
-        ArrayList<Node> list = new ArrayList<>();
-        Tree.emOrdem(this.root, list);
+    public ArrayList<Node<T>> emOrdem() {
+        ArrayList<Node<T>> list = new ArrayList<>();
+        emOrdem(this.root, list);
         return list;
     }
 
-    private static void emOrdem(Node current, ArrayList<Node> list) {
+    private void emOrdem(Node<T> current, ArrayList<Node<T>> list) {
         if (current == null) {
             return;
         }
@@ -67,45 +65,44 @@ public class Tree implements Iterable<Integer> {
         emOrdem(current.getRightSon(), list);
     }
 
-    public Integer[] emLargura() {
+    public LinkedList<T> emLargura() {
         if (this.root == null)
-            return new Integer[]{null};
+            return null;
         int size = (1 << this.getHeight()) - 1;
-        Integer[] result = new Integer[size];
-        Node node;
-        int level = 0;
-        Queue<Node> next = new LinkedList<>();
+        LinkedList<T> result = new LinkedList<>();
+        Node<T> node;
+        Queue<Node<T>> next = new LinkedList<>();
         next.add(this.root);
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < size; i++) {
             node = next.poll();
             if (node == null) {
-                result[i] = null;
+                result.add(i, null);
                 continue;
             }
-            result[i] = node.getKey();
+            result.add(i, node.getKey());
             next.add(node.getLeftSon());
             next.add(node.getRightSon());
         }
         return result;
     }
 
-    public void inserir(int key) throws SameKeyException {
-        Node node = root;
+    public void inserir(T key) throws SameKeyException {
+        Node<T> node = root;
         if (node == null) {
-            root = new Node(null, key);
+            root = new Node<T>(null, key);
             return;
         }
         while (true) {
-            if (node.getKey() == key) throw new SameKeyException(String.format("Já existe uma chave com o número %d.", key));
-            int pos = node.getKey() >= key ? 0 : 1;
+            if (node.getKey().equals(key)) throw new SameKeyException(String.format("Já existe uma chave com o número %s.", key));
+            int pos = 1-((node.getKey().compareTo(key) + 1) >> 1);
             if (node.getChild(pos) == null) {
-                node.changeChild(pos, new Node(node, key));
+                node.changeChild(pos, new Node<T>(node, key));
                 break;
             }
             node = node.getChild(pos);
         }
 
-        Node problem = null;
+        Node<T> problem = null;
         while (node != null) {
             node.updateHeightCb();
             if (node.getCb() > 1 || node.getCb() < -1)
@@ -120,13 +117,13 @@ public class Tree implements Iterable<Integer> {
     // esse método pode retornar um boolean pra dizer se deu certo ou n
     // exclusão ainda não terminada
     // exclusão por copia
-    public boolean excluir(int keyToExclude) {
-        Node excluded = this.pesquisar(keyToExclude);
+    public boolean excluir(T keyToExclude) {
+        Node<T> excluded = this.pesquisar(keyToExclude);
         if (excluded == null){
             return false;
         }
-        Node leftSon = excluded.getLeftSon();
-        Node rightSon = excluded.getRightSon();
+        final Node<T> leftSon = excluded.getLeftSon();
+        final Node<T> rightSon = excluded.getRightSon();
         if (rightSon == null && leftSon == null) {
             if (excluded == root) {
                 root = null;
@@ -157,12 +154,12 @@ public class Tree implements Iterable<Integer> {
             updateAndRebalence(rightSon);
             return true;
         }
-        Node substitute = leftSon;
+        Node<T> substitute = leftSon;
 
         while (substitute.getRightSon() != null)
             substitute = substitute.getRightSon();
 
-        Node substituteLeftSon = substitute.getLeftSon();
+        Node<T> substituteLeftSon = substitute.getLeftSon();
         if (substituteLeftSon != null) {
             substituteLeftSon.setDaddy(substitute.getDaddy());
         }
@@ -179,7 +176,7 @@ public class Tree implements Iterable<Integer> {
         return true;
     }
 
-    private void updateAndRebalence(Node current) {
+    private void updateAndRebalence(Node<T> current) {
         while (current != null) {
             current.updateHeightCb();
             if (current.getCb() > 1 || current.getCb() < -1) {
@@ -190,10 +187,10 @@ public class Tree implements Iterable<Integer> {
         }
     }
 
-    public static void changeDaddy(Node child, Node daddy) {
+    public static <T extends Comparable<T>> void changeDaddy(Node<T> child, Node<T> daddy) {
         if (daddy != child) {
             if (daddy != null) {
-                if (child.getKey() < daddy.getKey()) {
+                if (daddy.getKey().compareTo(child.getKey()) > 0) {
                     daddy.setLeftSon(child);
                 }
                 else {
@@ -204,14 +201,14 @@ public class Tree implements Iterable<Integer> {
         }
     }
 
-    private static void replace(Node toKill, Node replacement) {
-        Node dad = toKill.getDaddy();
-        Node leftSon = toKill.getLeftSon();
-        Node rightSon = toKill.getRightSon();
+    private static <T extends Comparable<T>> void replace(Node<T> toKill, Node<T> replacement) {
+        Node<T> dad = toKill.getDaddy();
+        Node<T> leftSon = toKill.getLeftSon();
+        Node<T> rightSon = toKill.getRightSon();
 
         if (dad != replacement) {
             if (dad != null) {
-                if (toKill.getKey() < dad.getKey()) {
+                if (dad.getKey().compareTo(toKill.getKey()) > 0) {
                     dad.setLeftSon(replacement);
                 }
                 else {
@@ -242,7 +239,7 @@ public class Tree implements Iterable<Integer> {
         }
     }
 
-    public void rebalancear(Node node) {
+    public void rebalancear(Node<T> node) {
         if (node.getCb() <= 1 && node.getCb() >= -1)
             return;
         int pos = node.getCb() > 0 ? 1 : 0;
@@ -254,10 +251,10 @@ public class Tree implements Iterable<Integer> {
         rebalancear(oppositeChild, node);
     }
 
-    public void rebalancear(int pos, Node node) {
-        Node child = node.getChild(pos);
+    public void rebalancear(int pos, Node<T> node) {
+        Node<T> child = node.getChild(pos);
         int oppositeChild = 1 - pos;
-        Node childOtherChild = child.getChild(oppositeChild);
+        Node<T> childOtherChild = child.getChild(oppositeChild);
 
         child.changeChild(oppositeChild, node);
         child.setDaddy(node.getDaddy());
@@ -269,22 +266,22 @@ public class Tree implements Iterable<Integer> {
         if (childOtherChild != null) {
             childOtherChild.setDaddy(node);
         }
-        Node current = node;
+        Node<T> current = node;
         while (current != null) {
             current.updateHeightCb();
             current = current.getDaddy();
         }
     }
 
-    public Node pesquisar(int keySearch) {
-        Node nodeControl = root;
+    public Node<T> pesquisar(T keySearch) {
+        Node<T> nodeControl = root;
         // esse for evita elses desnecessários e mantém o código mais limpo (até porque o número de
         // pesquisas não vai passar do valor da altura da árvore)
         for (int i=0; i <= getHeight(); i++) {
-            int nodeControlKey = nodeControl.getKey();
-            if (keySearch == nodeControlKey)
+            int nodeControlKey = nodeControl.getKey().compareTo(keySearch);
+            if (0 == nodeControlKey)
                 return nodeControl;
-            if (keySearch > nodeControlKey) {
+            if (nodeControlKey < 0) {
                 if (nodeControl.getRightSon() != null)
                     nodeControl = nodeControl.getRightSon();
             } else
@@ -301,12 +298,12 @@ public class Tree implements Iterable<Integer> {
     }
 
     @Override
-    public Iterator<Integer> iterator() {
+    public Iterator<T> iterator() {
         iterator.setRoot(root);
         return iterator;
     }
 
-    public void setIterator(Caminhamento iterator) {
+    public void setIterator(Caminhamento<T> iterator) {
         this.iterator = iterator;
     }
 }
