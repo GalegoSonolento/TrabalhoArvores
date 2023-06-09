@@ -749,4 +749,30 @@ public class TreeTest {
             assertEquals(iter.next(), integer);
         }
     }
+
+    @Test
+    void testeIteratorJavadocEx1() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.inserir(-1);
+        tree.inserir(3);
+        tree.setIterator(new EmOrdem<>());
+        int[] output = {-1, 1, 3};
+        Iterator<Integer> iter = Arrays.stream(output).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
+
+    @Test
+    void testeIteratorJavadocEx2() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.inserir(-1);
+        tree.inserir(3);
+        tree.setIterator(new PreOrdem<>());
+        int[] output = {1, -1, 3};
+        Iterator<Integer> iter = Arrays.stream(output).iterator();
+        for (Integer integer : tree) {
+            assertEquals(iter.next(), integer);
+        }
+    }
 }

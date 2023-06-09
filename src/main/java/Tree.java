@@ -273,6 +273,11 @@ public class Tree<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
+    /**
+     * Pesquisa por um nó usando sua chave
+     * @param keySearch chave do nó que estamos procurando
+     * @return O nó que contém a chave keySearch ou nulo caso nenhum nó seja encontrado
+     */
     public Node<T> pesquisar(T keySearch) {
         Node<T> nodeControl = root;
         // esse for evita elses desnecessários e mantém o código mais limpo (até porque o número de
@@ -297,6 +302,35 @@ public class Tree<T extends Comparable<T>> implements Iterable<T> {
         return "Tree{}";
     }
 
+    /**
+     * Parte da interface Iterable, permite caminhar pela arvore vendo cada chave individualmente.
+     * <br />
+     * Exemplo de uso:
+     * <pre>
+     *     {@code
+     * Tree<Integer> tree = new Tree<>(1);
+     * tree.inserir(-1);
+     * tree.inserir(3);
+     * tree.setIterator(new EmOrdem<>());
+     * for (Integer v : tree)
+     *     System.Out.println(v);
+     * }
+     * <pre>
+     * Output = -1, 1, 3
+     * Exemplo de uso com outros caminhamentos:
+     * <pre>
+     *     {@code
+     * Tree<Integer> tree = new Tree<>(1);
+     * tree.inserir(-1);
+     * tree.inserir(3);
+     * tree.setIterator(new PreOrdem<>());
+     * for (Integer v : tree)
+     *     System.Out.println(v);
+     * }
+     * <pre>
+     * Output = 1, -1, 3
+     * @return Iterador da arvore começando pela raiz seguindo a ordem armazenada em this.iterator
+     */
     @Override
     public Iterator<T> iterator() {
         iterator.setRoot(root);
