@@ -1,58 +1,60 @@
 import java.util.function.Consumer;
 
-public class Node<T extends Comparable<T>> {
-    private Node<T> daddy;
+public class Node<K extends Comparable<K>, V> {
+    private Node<K, V> daddy;
 
-    private final Node<T>[] children = new Node[]{null, null};
+    private final Node<K, V>[] children = new Node[]{null, null};
     private int cb;
-    final private T key;
+    final private K key;
     private int height;
+    private V value;
 
-    public Node(Node<T> daddy, Node<T> rightSon, Node<T> leftSon, int cb, T key, int height) {
+    public Node(Node<K, V> daddy, Node<K, V> rightSon, Node<K, V> leftSon, int cb, K key, int height, V value) {
         this.daddy = daddy;
         this.children[0] = leftSon;
         this.children[1] = rightSon;
         this.cb = cb;
         this.key = key;
         this.height = height;
+        this.value = value;
     }
 
-    public Node(Node<T> daddy, Node<T> rightSon, Node<T> leftSon, int cb, T key) {
-        this(daddy, rightSon, leftSon, cb, key, 1);
+    public Node(Node<K, V> daddy, Node<K, V> rightSon, Node<K, V> leftSon, int cb, K key, V value) {
+        this(daddy, rightSon, leftSon, cb, key, 1, value);
     }
     public Node(Node<K, V> daddy, K key, V value) {
         this(daddy, null, null, 0, key, value);
     }
 
-    public Node<T> getDaddy() {
+    public Node<K, V> getDaddy() {
         return daddy;
     }
 
-    public void setDaddy(Node<T> daddy) {
+    public void setDaddy(Node<K, V> daddy) {
         this.daddy = daddy;
     }
 
-    public Node<T> getRightSon() {
+    public Node<K, V> getRightSon() {
         return children[1];
     }
 
-    public void setRightSon(Node<T> rightSon) {
+    public void setRightSon(Node<K, V> rightSon) {
         this.children[1] = rightSon;
     }
 
-    public Node<T> getLeftSon() {
+    public Node<K, V> getLeftSon() {
         return children[0];
     }
 
-    public void setLeftSon(Node<T> leftSon) {
+    public void setLeftSon(Node<K, V> leftSon) {
         this.children[0] = leftSon;
     }
 
-    public void changeChild(int pos, Node<T> node) {
+    public void changeChild(int pos, Node<K, V> node) {
         this.children[pos] = node;
     }
 
-    public Node<T> getChild(int pos) {
+    public Node<K, V> getChild(int pos) {
         return children[pos];
     }
 
@@ -64,7 +66,7 @@ public class Node<T extends Comparable<T>> {
         this.cb = cb;
     }
 
-    public T getKey() {
+    public K getKey() {
         return key;
     }
 

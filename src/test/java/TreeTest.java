@@ -12,13 +12,13 @@ public class TreeTest {
     Tree<Integer, String> tree = new Tree<>();
     @BeforeEach
     void arvorePreMontada() {
-        tree.inserir(15);
-        tree.inserir(10);
-        tree.inserir(20);
-        tree.inserir(8);
-        tree.inserir(16);
-        tree.inserir(12);
-        tree.inserir(25);
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
+        tree.inserir(20, "20");
+        tree.inserir(8, "8");
+        tree.inserir(16, "16");
+        tree.inserir(12, "12");
+        tree.inserir(25, "25");
     }
     @Test
     void inserirTesteErroSameKey() {
@@ -31,7 +31,7 @@ public class TreeTest {
     }
     @Test
     void inserirCorreto() {
-        Tree<Integer> tree = new Tree<>();
+        Tree<Integer, String> tree = new Tree<>();
         assertNull(tree.getRoot());
     }
 
@@ -72,11 +72,11 @@ public class TreeTest {
 
     @Test
     void testeEmLarguraBanguela() {
-        Tree<Integer> tree = new Tree<>();
-        tree.inserir(15);
-        tree.inserir(10);
-        tree.inserir(20);
-        tree.inserir(8);
+        Tree<Integer, String> tree = new Tree<>();
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
+        tree.inserir(20, "20");
+        tree.inserir(8, "8");
         // tree.inserir(16); arvore fica com um null no meio
         tree.inserir(12, "12");
         tree.inserir(25, "25");
@@ -86,8 +86,8 @@ public class TreeTest {
 
     @Test
     void testeDePesquisaElementoExiste() {
-        assertEquals(8, tree.pesquisar(8).getKey());
-        assertEquals(16, tree.pesquisar(16).getKey());
+        assertEquals("8", tree.pesquisar(8));
+        assertEquals("16", tree.pesquisar(16));
         assertNull(tree.pesquisar(55));
     }
 
@@ -169,10 +169,10 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaSimplesSemFilho() {
-        Tree<Integer> tree = new Tree<>();
-        tree.inserir(8);
-        tree.inserir(10);
-        tree.inserir(15);
+        Tree<Integer, String> tree = new Tree<>();
+        tree.inserir(8, "8");
+        tree.inserir(10, "10");
+        tree.inserir(15, "15");
         // System.out.println(Arrays.toString(tree.emLargura()));
         // root check
         assertNotNull(tree.getRoot());
@@ -197,13 +197,13 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoEsquerdaSimplesComFilho() {
-        Tree<Integer> tree = new Tree<>();
-        tree.inserir(8);
-        tree.inserir(10);
-        tree.inserir(6);
-        tree.inserir(9);
-        tree.inserir(16);
-        tree.inserir(17);
+        Tree<Integer, String> tree = new Tree<>();
+        tree.inserir(8, "8");
+        tree.inserir(10, "10");
+        tree.inserir(6, "6");
+        tree.inserir(9, "9");
+        tree.inserir(16, "16");
+        tree.inserir(17, "17");
         // System.out.println(Arrays.toString(tree.emLargura()));
         // root check
         assertNotNull(tree.getRoot());
@@ -270,13 +270,13 @@ public class TreeTest {
 
     @Test
     void testeRebalanceamentoDireitaDuploComFilho() {
-        Tree<Integer> tree = new Tree<>();
-        tree.inserir(15);
-        tree.inserir(10);
-        tree.inserir(16);
-        tree.inserir(12);
-        tree.inserir(8);
-        tree.inserir(13);
+        Tree<Integer, String> tree = new Tree<>();
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
+        tree.inserir(16, "16");
+        tree.inserir(12, "12");
+        tree.inserir(8, "8");
+        tree.inserir(13, "13");
         // System.out.println(Arrays.toString(tree.emLargura()));
         // root check
         assertNotNull(tree.getRoot());
@@ -431,7 +431,7 @@ public class TreeTest {
 
     @Test
     void exclusaoDeRootSemFilhos() {
-        Tree<Integer> teste = new Tree<>(5);
+        Tree<Integer, String> teste = new Tree<>(5, "5");
         assertEquals(5, teste.getRoot().getKey());
         assertTrue(teste.excluir(5));
         assertNull(teste.getRoot());
@@ -449,10 +449,10 @@ public class TreeTest {
 
     @Test
     void exclusaoNodeComFilhoDireita() {
-        Tree<Integer> tree = new Tree<>(15);
-        tree.inserir(10);
-        tree.inserir(16);
-        tree.inserir(12);
+        Tree<Integer, String> tree = new Tree<>(15, "15");
+        tree.inserir(10, "10");
+        tree.inserir(16, "16");
+        tree.inserir(12, "12");
         assertTrue(tree.excluir(10));
         assertEquals(12, tree.getRoot().getLeftSon().getKey());
     }
@@ -555,10 +555,10 @@ public class TreeTest {
     }
     @Test
     void exclusaoNodeSemFilhoComRebalanceamento() {
-        Tree<Integer> tree = new Tree<>(15);
-        tree.inserir(10);
-        tree.inserir(16);
-        tree.inserir(8);
+        Tree<Integer, String> tree = new Tree<>(15, "15");
+        tree.inserir(10, "10");
+        tree.inserir(16, "16");
+        tree.inserir(8, "8");
         assertTrue(tree.excluir(16));
 
         // root check
@@ -664,10 +664,10 @@ public class TreeTest {
 
     @Test
     void testePreOrdemUltimoADireita() {
-        Tree<Integer> tree = new Tree<>(12);
-        tree.inserir(8);
-        tree.inserir(15);
-        tree.inserir(10);
+        Tree<Integer, String> tree = new Tree<>(12, "12");
+        tree.inserir(8, "8");
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
         int[] emOrdem = {12,8,10,15};
         tree.setIterator(new PreOrdem<>());
         Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
@@ -691,7 +691,7 @@ public class TreeTest {
 
     @Test
     void testePosOrdem() {
-        ArrayList<Node<Integer>> list = tree.posOrdem();
+        ArrayList<Node<Integer, String>> list = tree.posOrdem();
         assertEquals(8, list.remove(0).getKey());
         assertEquals(12, list.remove(0).getKey());
         assertEquals(10, list.remove(0).getKey());
@@ -703,7 +703,7 @@ public class TreeTest {
 
     @Test
     void testeEmOrdem() {
-        ArrayList<Node<Integer>> list = tree.emOrdem();
+        ArrayList<Node<Integer, String>> list = tree.emOrdem();
         assertEquals(8, list.remove(0).getKey());
         assertEquals(10, list.remove(0).getKey());
         assertEquals(12, list.remove(0).getKey());
@@ -725,10 +725,10 @@ public class TreeTest {
 
     @Test
     void testeEmOrdemUltimoADireita() {
-        Tree<Integer> tree = new Tree<>(12);
-        tree.inserir(8);
-        tree.inserir(15);
-        tree.inserir(10);
+        Tree<Integer, String> tree = new Tree<>(12, "12");
+        tree.inserir(8, "8");
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
         int[] emOrdem = {8,10,12,15};
         tree.setIterator(new EmOrdem<>());
         Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
@@ -739,10 +739,10 @@ public class TreeTest {
 
     @Test
     void testeEmOrdemUltimoADireitaAntigoEmOrdem() {
-        Tree<Integer> tree = new Tree<>(12);
-        tree.inserir(8);
-        tree.inserir(15);
-        tree.inserir(10);
+        Tree<Integer, String> tree = new Tree<>(12, "12");
+        tree.inserir(8, "8");
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
         tree.setIterator(new EmOrdem<>());
         Iterator<Integer> iter = tree.emOrdem().stream().map(Node::getKey).iterator();
         for (Integer integer : tree) {
@@ -765,14 +765,31 @@ public class TreeTest {
 
     @Test
     void testeIteratorJavadocEx2() {
-        Tree<Integer> tree = new Tree<>(1);
-        tree.inserir(-1);
-        tree.inserir(3);
+        Tree<Integer, String> tree = new Tree<>(1, "1");
+        tree.inserir(-1, "-1");
+        tree.inserir(3, "3");
         tree.setIterator(new PreOrdem<>());
         int[] output = {1, -1, 3};
         Iterator<Integer> iter = Arrays.stream(output).iterator();
         for (Integer integer : tree) {
             assertEquals(iter.next(), integer);
         }
+    }
+
+    @Test
+    void testeStartsWithGenerico() {
+        Tree<Integer, String> tree = new Tree<>(1, "1");
+        tree.inserir(-1, "-1");
+        tree.inserir(3, "3");
+        System.out.println(tree.emOrdem(tree.StartsWithGenerico(0)));
+    }
+
+    @Test
+    void testeStartsWithGenerico2() {
+        Tree<String, String> tree = new Tree<>("joao", "1");
+        tree.inserir("jana", "-1");
+        tree.inserir("joaquim", "3");
+        tree.inserir("jzasdf", "-1");
+        System.out.println(tree.emOrdem(tree.StartsWithGenerico("jo")));
     }
 }

@@ -1,11 +1,11 @@
 import java.util.NoSuchElementException;
 
-public class EmOrdem<T extends Comparable<T>> implements Caminhamento<T> {
-    private Node<T> next;
+public class EmOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> {
+    private Node<K, V> next;
     private boolean goLeft = true;
 
     @Override
-    public void setRoot(Node<T> root) {
+    public void setRoot(Node<K, V> root) {
         this.next = root;
     }
 
@@ -15,8 +15,8 @@ public class EmOrdem<T extends Comparable<T>> implements Caminhamento<T> {
     }
 
     @Override
-    public T next() {
-        Node<T> current = this.next;
+    public K next() {
+        Node<K, V> current = this.next;
 
         if (current == null) {
             throw new NoSuchElementException();
@@ -33,8 +33,8 @@ public class EmOrdem<T extends Comparable<T>> implements Caminhamento<T> {
             goLeft = true;
         } else {
             if (current.getDaddy() != null) {
-                Node<T> dad = current.getDaddy();
-                Node<T> child = current;
+                Node<K, V> dad = current.getDaddy();
+                Node<K, V> child = current;
                 while (dad != null && dad.getRightSon() == child) {
                     child = dad;
                     dad = child.getDaddy();
