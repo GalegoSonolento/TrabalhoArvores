@@ -353,14 +353,14 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
         return "Tree{}";
     }
 
-    public Node<K, V> StartsWithGenerico(K key) {
+    public ArrayList<V> startsWithGenerico(K key) {
         Node<K, V> nodeControl = root;
         for (int i=0; i <= getHeight(); i++) {
             int nodeControlKey = nodeControl.getKey().compareTo(key);
-            if (0 == nodeControlKey)
-                return nodeControl;
-            if (nodeControlKey > 0) {
-                return nodeControl;
+            if (nodeControlKey >= 0) {
+                ArrayList<V> resultado = new ArrayList<>();
+                emOrdem(nodeControl).forEach(n -> resultado.add(n.getValue()));
+                return resultado;
             } else
             if (nodeControl.getLeftSon() != null)
                 nodeControl = nodeControl.getLeftSon();
@@ -377,10 +377,27 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
                 emOrdem(nodeControl).forEach(n -> resultado.add(n.getValue()));
                 return resultado;
             } else
-            if (nodeControl.getLeftSon() != null)
-                nodeControl = nodeControl.getLeftSon();
+            if (nodeControl.getRightSon() != null)
+                nodeControl = nodeControl.getRightSon();
         }
         return null;
+    }
+
+    private ArrayList<V> filter(Node<K, V> node, K start, K end, ArrayList<V> result) {
+        if (node != null && node.getKey().compareTo(start) >= 0 && node.getKey().compareTo(end) < 0) {
+            result.add(node.getValue());
+            filter(node.getLeftSon(), start, end, result);
+            filter(node.getRightSon(), start, end, result);
+        }
+        return result;
+    }
+
+    public ArrayList<V> filter(K start, K end) {
+        ArrayList<V> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        return filter(root, start, end, result);
     }
 }
 

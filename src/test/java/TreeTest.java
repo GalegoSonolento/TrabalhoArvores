@@ -782,16 +782,18 @@ public class TreeTest {
         Tree<Integer, String> tree = new Tree<>(1, "1");
         tree.inserir(-1, "-1");
         tree.inserir(3, "3");
-        System.out.println(tree.emOrdem(tree.StartsWithGenerico(0)));
+        System.out.println(tree.startsWithGenerico(0));
+       // assertArrayEquals({1,3}, );
     }
 
     @Test
     void testeStartsWithGenerico2() {
         Tree<String, String> tree = new Tree<>("joao", "1");
-        tree.inserir("jana", "-1");
+        tree.inserir("jana", "-675");
         tree.inserir("joaquim", "3");
         tree.inserir("jzasdf", "-1");
-        System.out.println(tree.emOrdem(tree.StartsWithGenerico("jo")));
+        String pesquisa = "jo";
+        System.out.println(tree.startsWithGenerico("jo"));
     }
 
     @Test
