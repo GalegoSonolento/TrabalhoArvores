@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
 public class Pessoa{
-    private int CPF, RG;
+    private long CPF, RG;
     private LocalDate dataNascimento;
     private String nome, cidadeNatal;
 
-    public Pessoa(int CPF, int RG, LocalDate dataNascimento, String nome, String cidadeNatal) {
+    public Pessoa(long CPF, long RG, LocalDate dataNascimento, String nome, String cidadeNatal) {
         if (nome == null || cidadeNatal == null || dataNascimento == null) {
             throw new RuntimeException("Null pointers in Pessoa constructor");
         }
@@ -16,7 +16,7 @@ public class Pessoa{
         this.cidadeNatal = cidadeNatal;
     }
 
-    public Pessoa(int CPF, int RG, int ano, int mes, int dia, String nome, String cidadeNatal) {
+    public Pessoa(long CPF, long RG, int ano, int mes, int dia, String nome, String cidadeNatal) {
         this.CPF = CPF;
         this.RG = RG;
         this.dataNascimento = LocalDate.of(ano, mes, dia);
@@ -24,11 +24,11 @@ public class Pessoa{
         this.cidadeNatal = cidadeNatal;
     }
 
-    public int getCPF() {
+    public long getCPF() {
         return CPF;
     }
 
-    public int getRG() {
+    public long getRG() {
         return RG;
     }
 

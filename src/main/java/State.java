@@ -4,7 +4,7 @@ import java.util.ArrayList;
 // todo: encontrar o erro do ChronoLocalDate para indexação da árvore
 public class State {
     private ArrayList<Pessoa> pessoasLista;
-    private Tree<Integer, Pessoa> indexCPF;
+    private Tree<Long, Pessoa> indexCPF;
     private Tree<String, Pessoa> indexNome;
     private Tree<ChronoLocalDate, Pessoa> indexDataNascimento;
 
@@ -32,7 +32,7 @@ public class State {
         return false;
     }
 
-    public Pessoa pesquisaPorCPF(int CPF) {
+    public Pessoa pesquisaPorCPF(long CPF) {
         return indexCPF.pesquisar(CPF);
     }
 

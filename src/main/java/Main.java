@@ -1,7 +1,9 @@
+import java.nio.file.Path;
+
 public class Main {
-    final static String FILENAME = ".\\pessoas.csv";
+    final static Path FILEPATH = Path.of(".\\pessoas.csv");
     public static void main(String args[]){
-        State initialState = new State();
+        State initialState = Serializer.deserialize(FILEPATH);
 
         // TODO puxar do arquivo file -> initialState
 
