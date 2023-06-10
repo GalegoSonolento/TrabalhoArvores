@@ -1,13 +1,13 @@
 import java.util.NoSuchElementException;
 
-public class PosOrdem<T extends Comparable<T>> implements Caminhamento<T> {
-    private Node<T> next;
+public class PosOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> {
+    private Node<K, V> next;
     private boolean goLeft = true;
 
     private boolean goUp = false;
 
     @Override
-    public void setRoot(Node<T> root) {
+    public void setRoot(Node<K, V> root) {
         this.next = root;
     }
 
@@ -17,8 +17,8 @@ public class PosOrdem<T extends Comparable<T>> implements Caminhamento<T> {
     }
 
     @Override
-    public T next() {
-        Node<T> current = this.next;
+    public K next() {
+        Node<K, V> current = this.next;
 
         if (current == null) {
             throw new NoSuchElementException();

@@ -201,10 +201,10 @@ public class Tree<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
-    private static <T extends Comparable<T>> void replace(Node<T> toKill, Node<T> replacement) {
-        Node<T> dad = toKill.getDaddy();
-        Node<T> leftSon = toKill.getLeftSon();
-        Node<T> rightSon = toKill.getRightSon();
+    private static <K extends Comparable<K>, V> void replace(Node<K, V> toKill, Node<K, V> replacement) {
+        Node<K, V> dad = toKill.getDaddy();
+        Node<K, V> leftSon = toKill.getLeftSon();
+        Node<K, V> rightSon = toKill.getRightSon();
 
         if (dad != replacement) {
             if (dad != null) {

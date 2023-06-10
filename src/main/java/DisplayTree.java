@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 public class DisplayTree {
-    public static String display(Tree<Integer> t) {
+    public static String display(Tree<Integer, String> t) {
         if (t == null)
             return null;
         StringBuilder out = new StringBuilder("""
@@ -88,14 +88,14 @@ public class DisplayTree {
 
 
     public static void main(String[] args) {
-        Tree<Integer> tree = new Tree<>();
-        tree.inserir(8);
-        tree.inserir(4);
-        tree.inserir(354);
-        tree.inserir(2345);
-        tree.inserir(34);
-        tree.inserir(2);
-        tree.inserir(1);
+        Tree<Integer, String> tree = new Tree<>();
+        tree.inserir(8, "8");
+        tree.inserir(4, "4");
+        tree.inserir(354, "354");
+        tree.inserir(2345, "2345");
+        tree.inserir(34, "34");
+        tree.inserir(2, "2");
+        tree.inserir(1, "1");
         try {
             Path file = Paths.get("index.html");
             Files.write(file, Collections.singleton(display(tree)), StandardCharsets.UTF_8);

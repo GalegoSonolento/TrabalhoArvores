@@ -20,9 +20,8 @@ public class Node<T extends Comparable<T>> {
     public Node(Node<T> daddy, Node<T> rightSon, Node<T> leftSon, int cb, T key) {
         this(daddy, rightSon, leftSon, cb, key, 1);
     }
-
-    public Node(Node<T> daddy, T key) {
-        this(daddy, null, null, 0, key);
+    public Node(Node<K, V> daddy, K key, V value) {
+        this(daddy, null, null, 0, key, value);
     }
 
     public Node<T> getDaddy() {
@@ -75,6 +74,10 @@ public class Node<T extends Comparable<T>> {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public V getValue() {
+        return value;
     }
 
     public void updateHeightCb() {
