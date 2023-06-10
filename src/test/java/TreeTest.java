@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import java.util.ArrayList;
@@ -791,5 +792,25 @@ public class TreeTest {
         tree.inserir("joaquim", "3");
         tree.inserir("jzasdf", "-1");
         System.out.println(tree.emOrdem(tree.StartsWithGenerico("jo")));
+    }
+
+    @Test
+    void testeEndsWithGenerico2() {
+        Tree<String, String> tree = new Tree<>("joao", "1");
+        tree.inserir("jana", "-675");
+        tree.inserir("joaquim", "3");
+        tree.inserir("jzasdf", "-1");
+        System.out.println(tree.endsWithGenerico("jo"));
+    }
+
+    @Test
+    void testeFilter() {
+        Tree<String, String> tree = new Tree<>("joao", "1");
+        tree.inserir("jana", "-675");
+        tree.inserir("joaquim", "3");
+        tree.inserir("jzasdf", "-1");
+        String a = "jo";
+        System.out.println(a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1));
+        System.out.println(tree.filter(a, a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1)));
     }
 }

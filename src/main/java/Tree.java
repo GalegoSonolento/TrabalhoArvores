@@ -368,14 +368,14 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
         return null;
     }
 
-    public Node<K, V> EndsWithGenerico(K key) {
+    public ArrayList<V> endsWithGenerico(K key) {
         Node<K, V> nodeControl = root;
         for (int i=0; i <= getHeight(); i++) {
             int nodeControlKey = nodeControl.getKey().compareTo(key);
-            if (0 == nodeControlKey)
-                return nodeControl;
-            if (nodeControlKey < 0) {
-                return nodeControl;
+            if (nodeControlKey <= 0) {
+                ArrayList<V> resultado = new ArrayList<>();
+                emOrdem(nodeControl).forEach(n -> resultado.add(n.getValue()));
+                return resultado;
             } else
             if (nodeControl.getLeftSon() != null)
                 nodeControl = nodeControl.getLeftSon();
