@@ -8,37 +8,18 @@ public class Menu {
     public void options(){
         System.out.println("""
                 MENU
-                1)Inserir pessoa
-                2)Deletar pessoa
-                3)Pesquisar pessoa
-                4)Percursos
-                5)Vizualizar a Árvore
-                6)Sair""");
-    }
-
-    public void percursos(){
-        System.out.println("""
-                Selecione a opção desejada:
-                1)Em ordem
-                2)Pós Ordem
-                3)Pré Ordem""");
-    }
-
-    public void pesquisas(){
-        System.out.println("""
-                Selecioe a pesquisa desejada:
-                1) Pesquisa por nome;
-                2) Pesquisa por CPF;
-                3) Pesquisa por data de nascimento;
-                """);
+                1) Consultar pelo CPF
+                2) Consultar pessoas cujos nomes comecem com uma string
+                3) Consultar pessoas cuja data de nascimento está entre um intervalo de tempo
+                4) Sair""");
     }
 
     public void actions(State state){
-        System.out.println("Seja bem Vindo!");
+        System.out.println("Seja bem vindo!");
         int op = 0;
         do{
             options();
-            System.out.println("Digite a opção desejada");
+            System.out.println("Digite a opção desejada: ");
             op = sc1.nextInt();
             switch (op) {
                 case 1:
