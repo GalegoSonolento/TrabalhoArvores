@@ -389,7 +389,6 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
     }
 
     private ArrayList<V> filter(Node<K, V> node, K start, K end, ArrayList<V> result, boolean desistencia) {
-        System.out.println(node);
         if (node.getKey().compareTo(start) >= 0 && node.getKey().compareTo(end) < 0) {
             result.add(node.getValue());
             if (node.getLeftSon() != null)
