@@ -14,7 +14,7 @@ public class PreOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> 
     }
 
     @Override
-    public K next() {
+    public V next() {
         final Node<K, V> current = this.next;
 
         if (current == null) {
@@ -23,12 +23,12 @@ public class PreOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> 
 
         if (current.getLeftSon() != null) {
             this.next = current.getLeftSon();
-            return current.getKey();
+            return current.getValue();
         }
 
         if (current.getRightSon() != null) {
             this.next = current.getRightSon();
-            return current.getKey();
+            return current.getValue();
         }
 
         Node<K, V> dad = current.getDaddy();
@@ -42,7 +42,7 @@ public class PreOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> 
         else
             this.next = dad.getRightSon();
 
-        return current.getKey();
+        return current.getValue();
     }
 
 }

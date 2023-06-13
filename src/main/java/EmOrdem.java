@@ -15,7 +15,7 @@ public class EmOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> {
     }
 
     @Override
-    public K next() {
+    public V next() {
         Node<K, V> current = this.next;
 
         if (current == null) {
@@ -43,6 +43,6 @@ public class EmOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> {
             }
         }
 
-        return current.getKey();
+        return current.getValue();
     }
 }

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
+public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
     private Node<K, V> root;
 
     private Caminhamento<K, V> iterator;
@@ -343,7 +343,7 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
      * @return Iterador da arvore começando pela raiz seguindo a ordem armazenada em this.iterator
      */
     @Override
-    public Iterator<K> iterator() {
+    public Iterator<V> iterator() {
         iterator.setRoot(root);
         return iterator;
     }

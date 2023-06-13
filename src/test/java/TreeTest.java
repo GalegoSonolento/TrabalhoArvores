@@ -655,11 +655,11 @@ public class TreeTest {
 
     @Test
     void testePreOrdemIterator() {
-        int[] preOrdem = {15,10,8,12,20,16,25};
-        Iterator<Integer> iter = Arrays.stream(preOrdem).iterator();
+        String[] preOrdem = {"15","10","8","12","20","16","25"};
+        Iterator<String> iter = Arrays.stream(preOrdem).iterator();
         tree.setIterator(new PreOrdem<>());
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -669,11 +669,11 @@ public class TreeTest {
         tree.inserir(8, "8");
         tree.inserir(15, "15");
         tree.inserir(10, "10");
-        int[] emOrdem = {12,8,10,15};
+        String[] emOrdem = {"12","8","10","15"};
         tree.setIterator(new PreOrdem<>());
-        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        Iterator<String> iter = Arrays.stream(emOrdem).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -684,9 +684,9 @@ public class TreeTest {
         tree.inserir(15, "15");
         tree.inserir(10, "10");
         tree.setIterator(new PreOrdem<>());
-        Iterator<Integer> iter = tree.preOrdem().stream().map(Node::getKey).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        Iterator<String> iter = tree.preOrdem().stream().map(Node::getValue).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -700,6 +700,17 @@ public class TreeTest {
         assertEquals(25, list.remove(0).getKey());
         assertEquals(20, list.remove(0).getKey());
         assertEquals(15, list.remove(0).getKey());
+    }
+
+    //@Test
+    // Not implemented see PosOrdem.java
+    void testePosOrdemIterator() {
+        String[] emOrdem = {"8","10","12","15","16","20","25"};
+        tree.setIterator(new PosOrdem<>());
+        Iterator<String> iter = Arrays.stream(emOrdem).iterator();
+        for (String str : tree) {
+            System.out.println(str);
+        }
     }
 
     @Test
@@ -716,11 +727,11 @@ public class TreeTest {
 
     @Test
     void testeEmOrdemIterator() {
-        int[] emOrdem = {8,10,12,15,16,20,25};
+        String[] emOrdem = {"8","10","12","15","16","20","25"};
         tree.setIterator(new EmOrdem<>());
-        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        Iterator<String> iter = Arrays.stream(emOrdem).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -730,11 +741,11 @@ public class TreeTest {
         tree.inserir(8, "8");
         tree.inserir(15, "15");
         tree.inserir(10, "10");
-        int[] emOrdem = {8,10,12,15};
+        String[] emOrdem = {"8","10","12","15"};
         tree.setIterator(new EmOrdem<>());
-        Iterator<Integer> iter = Arrays.stream(emOrdem).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        Iterator<String> iter = Arrays.stream(emOrdem).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -745,9 +756,9 @@ public class TreeTest {
         tree.inserir(15, "15");
         tree.inserir(10, "10");
         tree.setIterator(new EmOrdem<>());
-        Iterator<Integer> iter = tree.emOrdem().stream().map(Node::getKey).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        Iterator<String> iter = tree.emOrdem().stream().map(Node::getValue).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -757,10 +768,10 @@ public class TreeTest {
         tree.inserir(-1, "-1");
         tree.inserir(3, "3");
         tree.setIterator(new EmOrdem<>());
-        int[] output = {-1, 1, 3};
-        Iterator<Integer> iter = Arrays.stream(output).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        String[] output = {"-1", "1", "3"};
+        Iterator<String> iter = Arrays.stream(output).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -770,10 +781,10 @@ public class TreeTest {
         tree.inserir(-1, "-1");
         tree.inserir(3, "3");
         tree.setIterator(new PreOrdem<>());
-        int[] output = {1, -1, 3};
-        Iterator<Integer> iter = Arrays.stream(output).iterator();
-        for (Integer integer : tree) {
-            assertEquals(iter.next(), integer);
+        String[] output = {"1", "-1", "3"};
+        Iterator<String> iter = Arrays.stream(output).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
