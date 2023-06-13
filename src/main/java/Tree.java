@@ -284,6 +284,9 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
      */
     private Node<K, V> pesquisarInterno(K keySearch) {
         Node<K, V> nodeControl = root;
+        if (nodeControl == null) {
+            return null;
+        }
         // esse for evita elses desnecessários e mantém o código mais limpo (até porque o número de
         // pesquisas não vai passar do valor da altura da árvore)
         for (int i=0; i <= getHeight(); i++) {

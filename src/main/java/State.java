@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class State {
     private ArrayList<Pessoa> pessoasLista;
     private Tree<Long, Pessoa> indexCPF;
-    private Tree<String, Pessoa> indexNome;
-    private Tree<ChronoLocalDate, Pessoa> indexDataNascimento;
+    private Tree<String, ArrayList<Pessoa>> indexNome;
+    private Tree<ChronoLocalDate, ArrayList<Pessoa>> indexDataNascimento;
 
     public State() {
         this.pessoasLista = new ArrayList<>();
@@ -16,12 +16,21 @@ public class State {
     }
 
     // todo adiciona uma pessoa; lembrar de atualizar os indexes!!!!
-    public boolean adicionaPessoa(Pessoa fulano) {
+    public void adicionaPessoa(Pessoa fulano) {
         pessoasLista.add(fulano);
         indexCPF.inserir(fulano.getCPF(), fulano);
-        indexNome.inserir(fulano.getNome(), fulano);
-        indexDataNascimento.inserir(fulano.getDataNascimento(), fulano);
-        return false;
+        ArrayList<Pessoa> nomes = indexNome.pesquisar(fulano.getNome());
+        if (nomes == null) {
+            nomes = new ArrayList<>();
+            indexNome.inserir(fulano.getNome(), nomes);
+        }
+        nomes.add(fulano);
+        ArrayList<Pessoa> nascidos = indexDataNascimento.pesquisar(fulano.getDataNascimento());
+        if (nascidos == null) {
+            nascidos = new ArrayList<>();
+            indexDataNascimento.inserir(fulano.getDataNascimento(), nascidos);
+        }
+        nascidos.add(fulano);
     }
 
     public boolean retiraPessoa(Pessoa fulano) {
