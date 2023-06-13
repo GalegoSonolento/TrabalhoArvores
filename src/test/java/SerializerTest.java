@@ -16,7 +16,7 @@ public class SerializerTest {
         try {
             Serializer.deserialize(Path.of("erro.csv"));
         } catch (SameKeyException e) {
-            fail("Pessoas nascidas no mesmo dia devem ser aceitas");
+            fail("Pessoas nascidas no mesmo dia ou com o mesmo nome devem ser aceitas");
         }
     }
    @Test

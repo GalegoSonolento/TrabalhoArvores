@@ -118,9 +118,11 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
             this.rebalancear(problem);
     }
 
-    // esse método pode retornar um boolean pra dizer se deu certo ou n
-    // exclusão ainda não terminada
-    // exclusão por copia
+    /**
+     * Exclusão por cópia, caso a chave não exista retornamos falso.
+     * @param keyToExclude chave que será removida
+     * @return retornamos falso quando a chave não existe na arvore.
+     */
     public boolean excluir(K keyToExclude) {
         Node<K, V> excluded = this.pesquisarInterno(keyToExclude);
         if (excluded == null){
@@ -386,21 +388,50 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
         return null;
     }
 
-    private ArrayList<V> filter(Node<K, V> node, K start, K end, ArrayList<V> result) {
-        if (node != null && node.getKey().compareTo(start) >= 0 && node.getKey().compareTo(end) < 0) {
+    private ArrayList<V> filter(Node<K, V> node, K start, K end, ArrayList<V> result, boolean desistencia) {
+        System.out.println(node);
+        if (node.getKey().compareTo(start) >= 0 && node.getKey().compareTo(end) < 0) {
             result.add(node.getValue());
-            filter(node.getLeftSon(), start, end, result);
-            filter(node.getRightSon(), start, end, result);
+            if (node.getLeftSon() != null)
+                filter(node.getLeftSon(), start, end, result, true);
+            if (node.getRightSon() != null)
+                filter(node.getRightSon(), start, end, result, true);
+            return result;
+        }
+        if (desistencia) {
+            if (node.getLeftSon() != null)
+                filter(node.getLeftSon(), start, end, result, false);
+            if (node.getRightSon() != null)
+                filter(node.getRightSon(), start, end, result, false);
         }
         return result;
     }
 
     public ArrayList<V> filter(K start, K end) {
         ArrayList<V> result = new ArrayList<>();
-        if (root == null) {
+        Node<K, V> node = firstMatch(start, end);
+        if (node == null) {
             return result;
         }
-        return filter(root, start, end, result);
+        return filter(node, start, end, result, true);
+    }
+
+    private Node<K, V> firstMatch(K start, K end) {
+        Node<K, V> node = root;
+        for (int i = 0; i < getHeight(); i++) {
+            if (node == null)
+                continue;
+            if (node.getKey().compareTo(start) >= 0 && node.getKey().compareTo(end) < 0)
+                return node;
+            if (node.getKey().compareTo(start) >= 0) {
+                node = node.getLeftSon();
+                continue;
+            }
+            if (node.getKey().compareTo(end) < 0) {
+                node = node.getRightSon();
+            }
+        }
+        return null;
     }
 }
 

@@ -812,7 +812,24 @@ public class TreeTest {
         tree.inserir("joaquim", "3");
         tree.inserir("jzasdf", "-1");
         String a = "jo";
-        System.out.println(a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1));
-        System.out.println(tree.filter(a, a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1)));
+        String end = a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1);
+        assertEquals("jp", end);
+        assertArrayEquals(new String[]{"1", "3"},tree.filter(a, end).toArray());
+    }
+
+    @Test
+    void testeFilterAdv() {
+        Tree<String, String> tree = new Tree<>("joao", "1");
+        tree.inserir("jana", "2");
+        tree.inserir("joaquim", "3");
+        tree.inserir("jzasdf", "4");
+        tree.inserir("joo", "5");
+        tree.inserir("abacate", "6");
+        tree.inserir("acabate", "7");
+        String a = "jo";
+        String end = a.substring(0, a.length()-1) + (char)(a.charAt(a.length()-1) + 1);
+        assertEquals("jp", end);
+        System.out.println(tree.filter(a, end));
+        assertArrayEquals(new String[]{"3", "1", "5"},tree.filter(a, end).toArray());
     }
 }
