@@ -7,13 +7,15 @@ public class Menu {
     }
     public void options(){
         System.out.println("""
-                MENU
+                MENU // Opções necessárias para o grau B adicionadas.
                 1) Consultar pelo CPF
                 2) Consultar pessoas cujos nomes comecem com uma string
                 3) Consultar pessoas cuja data de nascimento está entre um intervalo de tempo
                 4) Sair""");
     }
 
+    // Removidas funções que não são mais necessárias no grau B.
+    
     public void actions(State state){
         System.out.println("Seja bem vindo!");
         int op = 0;

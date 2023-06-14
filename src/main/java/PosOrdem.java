@@ -2,7 +2,7 @@ import java.util.NoSuchElementException;
 
 public class PosOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> {
     private Node<K, V> next;
-    private boolean goLeft = true;
+    private boolean goRight = false;
 
     private boolean goUp = false;
 
@@ -17,15 +17,32 @@ public class PosOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> 
     }
 
     @Override
-    public K next() {
+    public V next() {
         Node<K, V> current = this.next;
-
+        // TODO implement
+        throw new RuntimeException("not implemented");
         if (current == null) {
             throw new NoSuchElementException();
         }
 
-        // TODO
+        if (!goUp) {
+            if (goRight) {
+                if (current.getRightSon() != null)
+                    current = current.getRightSon();
+                goUp = true;
+            }
+            goRight = true;
+            while (current.getLeftSon() != null)
+                current = current.getLeftSon();
+            if (current.getRightSon() != null)
+                current = current.getRightSon();
+        } else {
+            goUp = false;
+        }
 
-        return current.getKey();
+        System.out.println(current);
+        this.next = current.getDaddy();
+
+        return current.getValue();
     }
 }

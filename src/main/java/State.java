@@ -65,15 +65,49 @@ public class State {
         return indexDataNascimento.pesquisar(date);
     }
 
+    /**
+     * pesquisa por todas as pessoas nacidas em um dia especifico
+     * @param dia
+     * @param mes
+     * @param ano
+     * @return lista de pessoas
+     */
     public ArrayList<Pessoa> pesquisaPorDataDeNascimento(int dia, int mes, int ano) {
         return pesquisaPorDataDeNascimento(LocalDate.of(ano, mes, dia));
     }
 
-    // observação: o caminhamento que retorna a lista é o EmOrdem - usando a versão antiga, de recursão
+    /**
+     * Esta função é case-sensitive, isso quer dizer que "Marcos" não começa com "m", mas sim com "M"
+     * Esta função não garante nenhuma ordem dos elementos retornados
+     * @param pes Pedaço de um nome para pesquisar
+     * @return lista de todas as pessoas cujo nome começa com o pes
+     */
     public ArrayList<Pessoa> pesquisaPorNomeParcial(String pes) {
         String end = pes.substring(0, pes.length()-1) + (char)(pes.charAt(pes.length()-1) + 1);
         ArrayList<Pessoa> resultado = new ArrayList<>();
         indexNome.filter(pes, end).forEach(resultado::addAll);
+        return resultado;
+    }
+
+    /**
+     * Procura no index de datas de nascimento todas as pessoas nascidas no intervalo [Inicial, Final[
+     * <br />
+     * Nota-se que o intervalo não inclue pessoas nascidas na data final!
+     * @param diaInicial dia do mes que começa o intervalo
+     * @param mesInicial mês do ano que começa o intervalo
+     * @param anoInicial ano em que começa o intervalo
+     * @param diaFinal dia final do intervalo
+     * @param mesFinal mês final do intervalo
+     * @param anoFinal ano final do intervalo
+     * @return Todas as pessoas nascidas no intervalo [Inicial, Final[
+     */
+    public ArrayList<Pessoa> pesquisaPorDataIntervalo(int diaInicial, int mesInicial, int anoInicial, int diaFinal, int mesFinal, int anoFinal) {
+        return pesquisaPorDataIntervalo(LocalDate.of(anoInicial, mesInicial, diaInicial), LocalDate.of(anoFinal, mesFinal, diaFinal));
+    }
+
+    public ArrayList<Pessoa> pesquisaPorDataIntervalo(LocalDate dataInicial, LocalDate dataFinal) {
+        ArrayList<Pessoa> resultado = new ArrayList<>();
+        indexDataNascimento.filter(dataInicial, dataFinal).forEach(resultado::addAll);
         return resultado;
     }
 }
