@@ -26,9 +26,14 @@ public class Menu {
             switch (op) {
                 case 1:
                     System.out.println("numero bonito");
-
+                case 4:
+                    System.out.println("Obrigado por usar nosso sistema!");
+                    break;
                 default:
-                    System.out.println("numero invalido, voce sera bootado");
+                    System.out.println("Valor inválido, digite novamente...");
+                    try{
+                        Thread.sleep(1000);
+                    }catch(Exception e){}
             }
 
         }while(op == 6);

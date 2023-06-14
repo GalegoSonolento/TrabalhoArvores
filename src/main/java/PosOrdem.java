@@ -20,7 +20,7 @@ public class PosOrdem<K extends Comparable<K>, V> implements Caminhamento<K, V> 
     public V next() {
         Node<K, V> current = this.next;
         // TODO implement
-        throw new RuntimeException("not implemented");
+        // throw new RuntimeException("not implemented");
         if (current == null) {
             throw new NoSuchElementException();
         }

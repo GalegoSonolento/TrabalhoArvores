@@ -92,7 +92,7 @@ public class State {
     /**
      * Procura no index de datas de nascimento todas as pessoas nascidas no intervalo [Inicial, Final[
      * <br />
-     * Nota-se que o intervalo não inclue pessoas nascidas na data final!
+     * Nota-se que o intervalo não inclui pessoas nascidas na data final!
      * @param diaInicial dia do mes que começa o intervalo
      * @param mesInicial mês do ano que começa o intervalo
      * @param anoInicial ano em que começa o intervalo
