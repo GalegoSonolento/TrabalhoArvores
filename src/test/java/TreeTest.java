@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import java.util.ArrayList;
@@ -702,14 +701,26 @@ public class TreeTest {
         assertEquals(15, list.remove(0).getKey());
     }
 
-    //@Test
-    // Not implemented see PosOrdem.java
+    @Test
     void testePosOrdemIterator() {
-        String[] emOrdem = {"8","10","12","15","16","20","25"};
+        String[] emOrdem = {"8","12","10","16","25","20","15"};
         tree.setIterator(new PosOrdem<>());
         Iterator<String> iter = Arrays.stream(emOrdem).iterator();
         for (String str : tree) {
-            System.out.println(str);
+            assertEquals(iter.next(), str);
+        }
+    }
+
+    @Test
+    void testePosOrdemUltimoADireitaAntigoPreOrdem() {
+        Tree<Integer, String> tree = new Tree<>(12, "12");
+        tree.inserir(8, "8");
+        tree.inserir(15, "15");
+        tree.inserir(10, "10");
+        tree.setIterator(new PosOrdem<>());
+        Iterator<String> iter = tree.posOrdem().stream().map(Node::getValue).iterator();
+        for (String str : tree) {
+            assertEquals(iter.next(), str);
         }
     }
 
@@ -786,34 +797,6 @@ public class TreeTest {
         for (String str : tree) {
             assertEquals(iter.next(), str);
         }
-    }
-
-    @Test
-    void testeStartsWithGenerico() {
-        Tree<Integer, String> tree = new Tree<>(1, "1");
-        tree.inserir(-1, "-1");
-        tree.inserir(3, "3");
-        System.out.println(tree.startsWithGenerico(0));
-       // assertArrayEquals({1,3}, );
-    }
-
-    @Test
-    void testeStartsWithGenerico2() {
-        Tree<String, String> tree = new Tree<>("joao", "1");
-        tree.inserir("jana", "-675");
-        tree.inserir("joaquim", "3");
-        tree.inserir("jzasdf", "-1");
-        String pesquisa = "jo";
-        System.out.println(tree.startsWithGenerico("jo"));
-    }
-
-    @Test
-    void testeEndsWithGenerico2() {
-        Tree<String, String> tree = new Tree<>("joao", "1");
-        tree.inserir("jana", "-675");
-        tree.inserir("joaquim", "3");
-        tree.inserir("jzasdf", "-1");
-        System.out.println(tree.endsWithGenerico("jo"));
     }
 
     @Test

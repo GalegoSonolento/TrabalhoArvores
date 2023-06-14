@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class SerializerTest {
     State state = Serializer.deserialize(Path.of("teste.csv"));
 
-    // TODO Teste para o issue #3
+    // Teste reference ao issue #3
     @Test
     void testeDeserializerMesmoNascimento() {
         try {
