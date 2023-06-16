@@ -1,0 +1,19 @@
+Index: src/Tree.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package src;\r\n\r\npublic class Tree {\r\n    private Node root;\r\n    private int height;\r\n\r\n    public Node getRoot() {\r\n        return root;\r\n    }\r\n\r\n    public int getHeight() {\r\n        return height;\r\n    }\r\n\r\n    // TODO: Sobrecarregar o construtor com mais argumentos\r\n    public Tree() {\r\n        Node root = null;\r\n        height = 0;\r\n    }\r\n\r\n    public Tree(int key) {\r\n        root = new Node(null, null, null, 0, key);\r\n        height = 1;\r\n    }\r\n\r\n    public void preOrdem() {\r\n\r\n    }\r\n\r\n    public void posOrdem() {\r\n\r\n    }\r\n\r\n    public void emOrdem() {\r\n\r\n    }\r\n\r\n    // TODO: identificar onde colocar o height\r\n    public void inserir(int key) throws SameKeyException {\r\n        Node node = root;\r\n        if (node == null) {\r\n            root = new Node(null, null, null, 0, key);\r\n            height = 1;\r\n            return;\r\n        }\r\n        int heightControl = 1;\r\n        while (true) {\r\n            heightControl ++;\r\n            if (node.getKey() == key) throw new SameKeyException(\"Já existe uma chave com esse número.\");\r\n            if (node.getKey() > key) {\r\n                if (node.getLeftSon() == null) {\r\n                    node.setLeftSon(new Node(node, null, null, 0, key));\r\n                    break;\r\n                }\r\n                node = node.getLeftSon();\r\n            } else {\r\n                if (node.getRightSon() == null) {\r\n                    node.setRightSon(new Node(node, null, null, 0, key));\r\n                    break;\r\n                }\r\n                node = node.getRightSon();\r\n            }\r\n        }\r\n        // TODO: Incrementar a altura height ++;\r\n        // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.\r\n        if (heightControl > height) height = heightControl;\r\n        // TODO: inserir um rebalanceamento\r\n    }\r\n\r\n    public void rebalancear() {\r\n\r\n    }\r\n\r\n    public void pesquisar() {\r\n\r\n    }\r\n\r\n    // TODO: String grande com a árvore em tabs\r\n    @Override\r\n    public String toString() {\r\n        return \"src.Tree{}\";\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tree.java b/src/Tree.java
+--- a/src/Tree.java	(revision c99ce33337ce9b43c95096698979ec81e9740f52)
++++ b/src/Tree.java	(date 1680565088666)
+@@ -61,8 +61,6 @@
+                 node = node.getRightSon();
+             }
+         }
+-        // TODO: Incrementar a altura height ++;
+-        // TODO: Usar uma variável para controlar a profundidade do while e comparar a altura.
+         if (heightControl > height) height = heightControl;
+         // TODO: inserir um rebalanceamento
+     }
