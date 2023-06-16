@@ -21,10 +21,6 @@ public abstract class Serializer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        // Pessoas com a mesma data de nascimento ainda não são suportadas.
-        // Pessoas com o mesmo RG não são suportadas
-        // Pessoas com o mesmo CPF não existem, pois o CPF é único
-        // TODO Rastreado no issue #3
         return result;
     }
 }

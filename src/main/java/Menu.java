@@ -1,13 +1,17 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Menu {
     Scanner sc1 = new Scanner(System.in);
+
     public void rosto(State state){
         title();
         actions(state);
     }
     public void options(){
         System.out.println("""
-                MENU // Opções necessárias para o grau B adicionadas.
+                MENU 
                 1) Consultar pelo CPF
                 2) Consultar pessoas cujos nomes comecem com uma string
                 3) Consultar pessoas cuja data de nascimento está entre um intervalo de tempo
@@ -19,25 +23,55 @@ public class Menu {
     public void actions(State state){
         System.out.println("Seja bem vindo!");
         int op = 0;
-        do{
+        do {
             options();
             System.out.println("Digite a opção desejada: ");
             op = sc1.nextInt();
             switch (op) {
                 case 1:
-                    System.out.println("numero bonito");
+                    System.out.println("Digite o CPF da pessoas que deseja procurar!");
+                    long cpf = sc1.nextLong();
+                    Pessoa daddy = state.pesquisaPorCPF(cpf);
+                    if (daddy == null)
+                        System.out.println("Pessoa não encontrada");
+                    else
+                        System.out.println(daddy);
+                    break;
+                case 2:
+                    System.out.println("Digite o nome da Pessoa que você deseja procurar");
+                    String nome = sc1.next();
+                    ArrayList<Pessoa> mommy = state.pesquisaPorNomeParcial(nome);
+                    if (mommy.isEmpty())
+                        System.out.println("Pessoa não encontrada");
+                    else
+                        System.out.println(mommy);
+                    break;
+                case 3:
+                    System.out.println("Digite a data inicial (dd/mm/yyyy)");
+                    String moxe = sc1.next();
+                    LocalDate data = LocalDate.parse(moxe, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    System.out.println("Digite a data final (dd/mm/yyyy)");
+                    String schula = sc1.next();
+                    LocalDate dataf = LocalDate.parse(schula, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    ArrayList<Pessoa> marcio = state.pesquisaPorDataIntervalo(data, dataf);
+                    if (marcio.isEmpty())
+                        System.out.println("Pessoa não encontrada");
+                    else
+                        System.out.println(marcio);
+                    break;
                 case 4:
                     System.out.println("Obrigado por usar nosso sistema!");
+                    xavante();
                     break;
                 default:
                     System.out.println("Valor inválido, digite novamente...");
-                    try{
+                    try {
                         Thread.sleep(1000);
-                    }catch(Exception e){}
+                    } catch (Exception e) {
+                    }
             }
 
-        }while(op == 6);
-        //xavante();
+        } while (op!=4);
     }
 
     public void title(){
