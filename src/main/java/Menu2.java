@@ -1,9 +1,41 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Menu {
+public class Menu2 implements ActionListener {
+
+    private JLabel label;
+    private JFrame frame;
+    private JButton button;
+    private JPanel panel;
     Scanner sc1 = new Scanner(System.in);
+
+    public Menu2(){
+        frame = new JFrame();
+
+        button = new JButton("Click me");
+        button.addActionListener(this);
+
+
+        label = new JLabel("NUmber of clicks: 0");
+
+
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setLayout(new GridLayout(0, 1));
+        panel.add(button);
+        panel.add(label);
+
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Our GUI");
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     public void rosto(State state){
         title();
@@ -71,6 +103,11 @@ public class Menu {
             }
 
         } while (op!=4);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     public void title(){
