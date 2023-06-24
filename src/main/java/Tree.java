@@ -12,12 +12,10 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
     public int getHeight() {
         return root != null ? root.getHeight() : 0;
     }
-
-    // TODO: Sobrecarregar o construtor com mais argumentos
     public Tree() {}
 
     public Tree(K key, V value) {
-        root = new Node<K, V>(null, key, value);
+        root = new Node<>(null, key, value);
     }
 
     public ArrayList<Node<K, V>> preOrdem() {
@@ -93,14 +91,14 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
     public void inserir(K key, V value) throws SameKeyException {
         Node<K, V> node = root;
         if (node == null) {
-            root = new Node<K, V>(null, key, value);
+            root = new Node<>(null, key, value);
             return;
         }
         while (true) {
             if (node.getKey().equals(key)) throw new SameKeyException(String.format("Já existe uma chave com o número %s.", key));
             int pos = node.getKey().compareTo(key) > 0 ? 0 : 1;
             if (node.getChild(pos) == null) {
-                node.changeChild(pos, new Node<K, V>(node, key, value));
+                node.changeChild(pos, new Node<>(node, key, value));
                 break;
             }
             node = node.getChild(pos);
@@ -121,7 +119,7 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
     /**
      * Exclusão por cópia, caso a chave não exista retornamos falso.
      * @param keyToExclude chave que será removida
-     * @return retornamos falso quando a chave não existe na arvore.
+     * @return retornamos falso quando a chave não existe na árvore.
      */
     public boolean excluir(K keyToExclude) {
         Node<K, V> excluded = this.pesquisarInterno(keyToExclude);
@@ -139,7 +137,6 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
             updateAndRebalence(excluded.getDaddy());
             return true;
         }
-        // TODO: trocar a ordem dos testes de 1 filho e 2 filhos, fiz agora nessa ordem exclusivamente para fins didáticos
         if (leftSon != null && rightSon == null) {
             if (excluded == root) {
                 excluded.getLeftSon().setDaddy(null);
@@ -280,7 +277,7 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
     }
 
     /**
-     * Pesquisa por um nó usando sua chave
+     * Pesquisa por um nó usando a sua chave
      * @param keySearch chave do nó que estamos procurando
      * @return O nó que contém a chave keySearch ou nulo caso nenhum nó seja encontrado
      */
@@ -340,7 +337,7 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
      * }
      * <pre>
      * Output = 1, -1, 3
-     * @return Iterador da arvore começando pela raiz seguindo a ordem armazenada em this.iterator
+     * @return Iterador da árvore começando pela raiz seguindo a ordem armazenada em this.iterator
      */
     @Override
     public Iterator<V> iterator() {
@@ -350,42 +347,6 @@ public class Tree<K extends Comparable<K>, V> implements Iterable<V> {
 
     public void setIterator(Caminhamento<K, V> iterator) {
         this.iterator = iterator;
-    }
-
-    // TODO: String grande com a árvore em tabs
-    @Override
-    public String toString() {
-        return "Tree{}";
-    }
-
-    public ArrayList<V> startsWithGenerico(K key) {
-        Node<K, V> nodeControl = root;
-        for (int i=0; i <= getHeight(); i++) {
-            int nodeControlKey = nodeControl.getKey().compareTo(key);
-            if (nodeControlKey >= 0) {
-                ArrayList<V> resultado = new ArrayList<>();
-                emOrdem(nodeControl).forEach(n -> resultado.add(n.getValue()));
-                return resultado;
-            } else
-            if (nodeControl.getLeftSon() != null)
-                nodeControl = nodeControl.getLeftSon();
-        }
-        return null;
-    }
-
-    public ArrayList<V> endsWithGenerico(K key) {
-        Node<K, V> nodeControl = root;
-        for (int i=0; i <= getHeight(); i++) {
-            int nodeControlKey = nodeControl.getKey().compareTo(key);
-            if (nodeControlKey <= 0) {
-                ArrayList<V> resultado = new ArrayList<>();
-                emOrdem(nodeControl).forEach(n -> resultado.add(n.getValue()));
-                return resultado;
-            } else
-            if (nodeControl.getRightSon() != null)
-                nodeControl = nodeControl.getRightSon();
-        }
-        return null;
     }
 
     private ArrayList<V> filter(Node<K, V> node, K start, K end, ArrayList<V> result, boolean desistencia) {

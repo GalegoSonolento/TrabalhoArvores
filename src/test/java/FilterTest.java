@@ -28,7 +28,6 @@ public class FilterTest {
     void testeFilterDatas() {
         String[] expected = new String[]{"Isla Olsen", "Trace Schneider"};
         ArrayList<Pessoa> result = state.pesquisaPorDataIntervalo(1,1,2003, 1,1,2004);
-        System.out.println(result);
         for (Pessoa p :
                 result) {
             assertTrue(Arrays.stream(expected).anyMatch(m -> m.equals(p.getNome())));

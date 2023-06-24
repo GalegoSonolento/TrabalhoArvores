@@ -7,7 +7,7 @@ public class Node<K extends Comparable<K>, V> {
     private int cb;
     final private K key;
     private int height;
-    private V value;
+    private final V value;
 
     public Node(Node<K, V> daddy, Node<K, V> rightSon, Node<K, V> leftSon, int cb, K key, int height, V value) {
         this.daddy = daddy;
@@ -62,20 +62,12 @@ public class Node<K extends Comparable<K>, V> {
         return cb;
     }
 
-    public void setCb(int cb) {
-        this.cb = cb;
-    }
-
     public K getKey() {
         return key;
     }
 
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public V getValue() {

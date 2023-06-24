@@ -5,9 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e166331c-24a4-4107-b9d2-29c4434d8da4" name="Changes" comment="merge">
-      <change afterPath="$PROJECT_DIR$/TrabalhoArvores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TreeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_19_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_19_47__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_19_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_19_53__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2023_13_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2023_13_46__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2023_21_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2023_21_14__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2023_18_09__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2023_18_09__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FilterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TreeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Pessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/PosOrdem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PosOrdem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Serializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Serializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/StateTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/TreeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/TreeTest.class" afterDir="false" />
+    </list>
+    <list id="225d41c0-9a48-478d-bf03-844b32a05c0a" name="Changes by henri" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste.csv" beforeDir="false" afterPath="$PROJECT_DIR$/teste.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +68,60 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/State.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/teste.csv" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/State.java">
+      <ranges>
+        <range start1="4" end1="5" start2="4" end2="4" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="6" end1="7" start2="5" end2="5" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+        <range start1="12" end1="13" start2="10" end2="10" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="18" end1="19" start2="15" end2="15" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="20" end1="21" start2="16" end2="16" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+        <range start1="36" end1="36" start2="31" end2="40" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="39" end1="40" start2="43" end2="44" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="42" end1="43" start2="46" end2="47" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="47" end1="48" start2="51" end2="51" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+        <range start1="49" end1="50" start2="52" end2="53" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="68" end1="72" start2="71" end2="72" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="85" end1="86" start2="85" end2="89" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="87" end1="88" start2="90" end2="91" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="92" end1="93" start2="95" end2="96" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="106" end1="107" start2="109" end2="117" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="108" end1="108" start2="118" end2="120" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/Tree.java">
+      <ranges>
+        <range start1="14" end1="16" start2="14" end2="14" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="19" end1="20" start2="17" end2="18" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="95" end1="96" start2="93" end2="94" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="102" end1="103" start2="100" end2="101" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="123" end1="124" start2="121" end2="122" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="141" end1="142" start2="139" end2="139" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="282" end1="283" start2="279" end2="280" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+        <range start1="342" end1="343" start2="339" end2="340" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+        <range start1="353" end1="389" start2="350" end2="350" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/Menu.java">
+      <ranges>
+        <range start1="13" end1="14" start2="13" end2="14" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="19" end1="21" start2="19" end2="19" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="30" end1="31" start2="28" end2="29" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="38" end1="40" start2="36" end2="38" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="46" end1="49" start2="44" end2="48" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="59" end1="62" start2="58" end2="62" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="64" end1="66" start2="64" end2="67" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="69" end1="70" start2="70" end2="71" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="71" end1="71" start2="72" end2="73" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="77" end1="82" start2="79" end2="86" changelist="e166331c-24a4-4107-b9d2-29c4434d8da4" />
+        <range start1="85" end1="135" start2="89" end2="141" changelist="225d41c0-9a48-478d-bf03-844b32a05c0a" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -44,91 +137,90 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "D:/Programacao/Java/arvore/TrabalhoArvores",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.TreeTest.testeHeightComHeightControl">
-    <configuration name="TreeTest.testeFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="my-app" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my-app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FilterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FilterTest.testeFilterDatas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my-app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FilterTest" />
+      <option name="METHOD_NAME" value="testeFilterDatas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my-app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SerializerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my-app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StatusTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="my-app" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TreeTest" />
-      <option name="METHOD_NAME" value="testeFilter" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeTest.testeHeightComHeightControl" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TrabalhoArvores" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.TreeTest" />
-      <option name="METHOD_NAME" value="testeHeightComHeightControl" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeTest.testeLocalCerto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TrabalhoArvores" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.TreeTest" />
-      <option name="METHOD_NAME" value="testeLocalCerto" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeTest.testeStartsWithGenerico" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="my-app" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TreeTest" />
-      <option name="METHOD_NAME" value="testeStartsWithGenerico" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeTest.testeStartsWithGenerico2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="my-app" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TreeTest" />
-      <option name="METHOD_NAME" value="testeStartsWithGenerico2" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TreeTest.testeLocalCerto" />
-        <item itemvalue="JUnit.TreeTest.testeHeightComHeightControl" />
-        <item itemvalue="JUnit.TreeTest.testeStartsWithGenerico2" />
-        <item itemvalue="JUnit.TreeTest.testeStartsWithGenerico" />
-        <item itemvalue="JUnit.TreeTest.testeFilter" />
+        <item itemvalue="JUnit.TreeTest" />
+        <item itemvalue="JUnit.StatusTest" />
+        <item itemvalue="JUnit.SerializerTest" />
+        <item itemvalue="JUnit.FilterTest" />
+        <item itemvalue="JUnit.FilterTest.testeFilterDatas" />
       </list>
     </recent_temporary>
   </component>
@@ -140,6 +232,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680390267267</updated>
+      <workItem from="1686949631521" duration="4656000" />
     </task>
     <task id="LOCAL-00001" summary="Teste de inserção v1 realizado">
       <created>1680391316076</created>
@@ -221,6 +314,9 @@
     <option name="localTasksCounter" value="12" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -245,5 +341,9 @@
     <MESSAGE value="Agora já dá pra compilar o código com um CSV acoplado" />
     <MESSAGE value="merge" />
     <option name="LAST_COMMIT_MESSAGE" value="merge" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

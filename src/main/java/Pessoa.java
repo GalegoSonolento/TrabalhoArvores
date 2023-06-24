@@ -1,9 +1,11 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pessoa{
-    private long CPF, RG;
-    private LocalDate dataNascimento;
-    private String nome, cidadeNatal;
+    private final long CPF, RG;
+    private final LocalDate dataNascimento;
+    private final String nome;
+    private final String cidadeNatal;
 
     public Pessoa(long CPF, long RG, LocalDate dataNascimento, String nome, String cidadeNatal) {
         if (nome == null || cidadeNatal == null || dataNascimento == null) {
@@ -44,15 +46,14 @@ public class Pessoa{
         return cidadeNatal;
     }
 
-    // todo: lembrar de fzr o display com dia-mes-ano
+
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "CPF=" + CPF +
-                ", RG=" + RG +
-                ", dataNascimento=" + dataNascimento +
-                ", nome='" + nome + '\'' +
-                ", cidadeNatal='" + cidadeNatal + '\'' +
-                '}';
+        return "Nome: '" + nome + "'\n" +
+                "RG: " + RG + '\n' +
+                "Data Nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + '\n' +
+                "CPF: " + CPF + '\n' +
+                "Cidade Natal: '" + cidadeNatal + "'\n" +
+                "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-";
     }
 }

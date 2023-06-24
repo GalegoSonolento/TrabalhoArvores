@@ -2,23 +2,18 @@ import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 
-// todo: encontrar o erro do ChronoLocalDate para indexação da árvore
 public class State {
-    private final ArrayList<Pessoa> pessoasLista;
     private final Tree<Long, Pessoa> indexCPF;
     private final Tree<String, ArrayList<Pessoa>> indexNome;
     private final Tree<ChronoLocalDate, ArrayList<Pessoa>> indexDataNascimento;
 
     public State() {
-        this.pessoasLista = new ArrayList<>();
         this.indexCPF = new Tree<>();
         this.indexNome = new Tree<>();
         this.indexDataNascimento = new Tree<>();
     }
 
-    // todo adiciona uma pessoa; lembrar de atualizar os indexes!!!!
     public void adicionaPessoa(Pessoa fulano) {
-        pessoasLista.add(fulano);
         indexCPF.inserir(fulano.getCPF(), fulano);
         ArrayList<Pessoa> nomes = indexNome.pesquisar(fulano.getNome());
         if (nomes == null) {
@@ -34,20 +29,28 @@ public class State {
         nascidos.add(fulano);
     }
 
+    /**
+     * Para a realização desse trabalho, não foi requisitado a opção de retirar uma pessoa; todavia, deixamos uma
+     * função para retirada caso seja necessário num caso futuro.
+     *
+     * @param fulano Aqui o utilizador deve mandar um objeto de Pessoa para que a função a encontre e retire da árvore.
+     * @return Este retorno dependerá do sucesso da exclusão de pessoa. A função pesquisa a ‘String’ na árvore e aguarda
+     * um retorno, que será colocado em um ArrayList (uma vez que o Value contém um ArrayList). Se a lista de retorno
+     * for vazia, retorna false, caso não, o objeto Pessoa é retirado e o retorno é true.
+     */
     public boolean retiraPessoa(Pessoa fulano) {
         ArrayList<Pessoa> nomes = indexNome.pesquisar(fulano.getNome());
         if (nomes == null)
-            return false;
+          return false;
         nomes.remove(fulano);
         if (nomes.isEmpty())
-            indexNome.excluir(fulano.getNome());
+          indexNome.excluir(fulano.getNome());
 
         ArrayList<Pessoa> nascidos = indexDataNascimento.pesquisar(fulano.getDataNascimento());
         assert nascidos != null;
         nascidos.remove(fulano);
-        pessoasLista.remove(fulano);
         if (nascidos.isEmpty())
-            indexDataNascimento.excluir(fulano.getDataNascimento());
+          indexDataNascimento.excluir(fulano.getDataNascimento());
 
         indexCPF.excluir(fulano.getCPF());
         return true;
@@ -66,10 +69,7 @@ public class State {
     }
 
     /**
-     * pesquisa por todas as pessoas nacidas em um dia especifico
-     * @param dia
-     * @param mes
-     * @param ano
+     * Pesquisa por todas as pessoas nacidas em um dia especifico
      * @return lista de pessoas
      */
     public ArrayList<Pessoa> pesquisaPorDataDeNascimento(int dia, int mes, int ano) {
@@ -83,14 +83,17 @@ public class State {
      * @return lista de todas as pessoas cujo nome começa com o pes
      */
     public ArrayList<Pessoa> pesquisaPorNomeParcial(String pes) {
-        String end = pes.substring(0, pes.length()-1) + (char)(pes.charAt(pes.length()-1) + 1);
+        String limpo = pes.trim();
+        if (limpo.length() < 1)
+            return new ArrayList<>();
+        String end = limpo.substring(0, limpo.length()-1) + (char)(limpo.charAt(limpo.length()-1) + 1);
         ArrayList<Pessoa> resultado = new ArrayList<>();
-        indexNome.filter(pes, end).forEach(resultado::addAll);
+        indexNome.filter(limpo, end).forEach(resultado::addAll);
         return resultado;
     }
 
     /**
-     * Procura no index de datas de nascimento todas as pessoas nascidas no intervalo [Inicial, Final[
+     * Procura no index de datas de nascimento todas as pessoas nascidas no intervalo [Inicial, Final)
      * <br />
      * Nota-se que o intervalo não inclui pessoas nascidas na data final!
      * @param diaInicial dia do mes que começa o intervalo
@@ -104,8 +107,17 @@ public class State {
     public ArrayList<Pessoa> pesquisaPorDataIntervalo(int diaInicial, int mesInicial, int anoInicial, int diaFinal, int mesFinal, int anoFinal) {
         return pesquisaPorDataIntervalo(LocalDate.of(anoInicial, mesInicial, diaInicial), LocalDate.of(anoFinal, mesFinal, diaFinal));
     }
-
+    /**
+     * Procura no index de datas de nascimento todas as pessoas nascidas no intervalo [Inicial, Final)
+     * <br />
+     * Nota-se que o intervalo não inclui pessoas nascidas na data final!
+     * @param dataInicial data que começa o intervalo
+     * @param dataFinal data que começa o intervalo
+     * @return Todas as pessoas nascidas no intervalo [Inicial, Final[
+     */
     public ArrayList<Pessoa> pesquisaPorDataIntervalo(LocalDate dataInicial, LocalDate dataFinal) {
+        if (dataInicial.isAfter(dataFinal))
+            return new ArrayList<>();
         ArrayList<Pessoa> resultado = new ArrayList<>();
         indexDataNascimento.filter(dataInicial, dataFinal).forEach(resultado::addAll);
         return resultado;
